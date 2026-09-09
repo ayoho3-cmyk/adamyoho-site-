@@ -1,0 +1,8 @@
+{
+  "name": "Remix Adam Yoho  Official Site",
+  "description": "Culinary consulting, bespoke private events, master mentorship, and kitchen reflections by Chef Adam Yoho.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
