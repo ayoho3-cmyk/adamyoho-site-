@@ -1,0 +1,37 @@
+name = "adam-yoho-culinary"
+main = "worker/index.ts"
+compatibility_date = "2026-09-01"
+
+# adamyoho.com (apex) is already configured as a Custom Domain directly in
+# the Cloudflare dashboard (Workers & Pages > adam-yoho-culinary > Settings >
+# Domains & Routes) and is working. www.adamyoho.com is declared here so it's
+# provisioned automatically by `wrangler deploy` instead of depending on a
+# manual dashboard step that's easy to forget when the Worker gets recreated
+# or moved to a new account.
+[[routes]]
+pattern = "www.adamyoho.com"
+custom_domain = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "adam-yoho-culinary-db"
+database_id = "fab3cb91-1ed3-453a-9d93-c8723fc9b4f2"
+migrations_dir = "worker/migrations"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+# React Router / client-side routing: unmatched, non-asset paths should
+# fall back to index.html rather than 404ing.
+not_found_handling = "single-page-application"
+
+[vars]
+APP_URL = "https://adamyoho.com"
+
+# Uncomment and set via `wrangler secret put` (not in this file) if/when
+# newsletter signups should forward to an email marketing provider:
+# EMAIL_MARKETING_PROVIDER
+# EMAIL_MARKETING_WEBHOOK_URL
+
+[observability]
+enabled = true
