@@ -791,16 +791,25 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       {/* 3. Alternative Direct Calendly Scheduler Callout */}
       <section className="max-w-4xl mx-auto px-6 text-center space-y-4">
         <span className="font-mono-kitchen text-[11px] tracking-[2px] text-[#9c9488] block">
-          PREFER IMMEDIATE CALENDAR SCHEDULING?
+          PREFER IMMEDIATE CALENDAR SCHEDULING OR DIRECT EMAIL?
         </span>
-        <button
-          id="direct-calendly-trigger"
-          onClick={onOpenCalendly}
-          className="font-mono-kitchen text-[12px] tracking-[2px] text-[#c1651a] hover:text-[#f5f0e8] transition-colors inline-flex items-center space-x-2"
-        >
-          <Calendar className="w-4 h-4" />
-          <span>BOOK A 20-MINUTE INTRO CALL DIRECTLY ON CALENDAR →</span>
-        </button>
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <button
+            id="direct-calendly-trigger"
+            onClick={onOpenCalendly}
+            className="font-mono-kitchen text-[12px] tracking-[2px] text-[#c1651a] hover:text-[#f5f0e8] transition-colors inline-flex items-center space-x-2"
+          >
+            <Calendar className="w-4 h-4" />
+            <span>BOOK A 20-MINUTE INTRO CALL DIRECTLY ON CALENDAR →</span>
+          </button>
+          <span className="text-[#423e38]">·</span>
+          <a
+            href="mailto:chef@adamyoho.com"
+            className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] hover:text-[#c1651a] transition-colors"
+          >
+            DIRECT: CHEF@ADAMYOHO.COM
+          </a>
+        </div>
       </section>
 
     </div>

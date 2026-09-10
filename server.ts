@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { INITIAL_ARTICLES, INITIAL_TESTIMONIALS, INITIAL_FAQS, INITIAL_EVENT_GALLERY, CONSULTING_CASE_STUDIES } from "./src/data/cms";
 import { 
   sanityClient, 
@@ -14,7 +15,8 @@ import {
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
 // In-memory persistent data store (Headless / Git-based CMS & intake records)
 let articlesList = [...INITIAL_ARTICLES];
@@ -153,6 +155,36 @@ Sitemap: ${baseUrl}/sitemap.xml
 `;
   res.header("Content-Type", "text/plain");
   res.send(robots);
+});
+
+// Image Upload for Chef Portrait
+app.post("/api/upload/portrait", (req, res) => {
+  const { dataUrl } = req.body;
+  if (!dataUrl) {
+    return res.status(400).json({ error: "No image data provided" });
+  }
+  try {
+    const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, "");
+    const buffer = Buffer.from(base64Data, "base64");
+    const publicDir = path.join(process.cwd(), "public");
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
+    }
+    const publicPath = path.join(publicDir, "chef-adam-yoho-bio.jpg");
+    fs.writeFileSync(publicPath, buffer);
+    
+    // Also copy to dist if dist exists
+    const distPath = path.join(process.cwd(), "dist", "chef-adam-yoho-bio.jpg");
+    if (fs.existsSync(path.dirname(distPath))) {
+      fs.writeFileSync(distPath, buffer);
+    }
+    
+    console.log("[Portrait Upload] Successfully saved chef-adam-yoho-bio.jpg (" + buffer.length + " bytes)");
+    res.json({ success: true, url: "/chef-adam-yoho-bio.jpg?t=" + Date.now() });
+  } catch (err: any) {
+    console.error("[Portrait Upload Error]", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // --- API Endpoints ---

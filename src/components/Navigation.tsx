@@ -42,10 +42,8 @@ export const Navigation: React.FC<NavigationProps> = ({
     { label: 'CULINARY CONSULTING', route: 'consulting', num: '03' },
     { label: 'BESPOKE EVENTS', route: 'events', num: '04' },
     { label: 'CHEF MENTORSHIP', route: 'mentorship', num: '05' },
-    { label: 'PRESS & JOURNAL', route: 'press', num: '06' },
-    { label: 'TESTIMONIALS', route: 'testimonials', num: '07' },
-    { label: 'FAQ', route: 'faq', num: '08' },
-    { label: 'CONTACT & INTAKE', route: 'contact', num: '09' },
+    { label: 'FAQ', route: 'faq', num: '06' },
+    { label: 'CONTACT & INTAKE', route: 'contact', num: '07' },
   ];
 
   const handleRouteClick = (route: RoutePath) => {
@@ -105,15 +103,6 @@ export const Navigation: React.FC<NavigationProps> = ({
                 }`}
               >
                 MENTORSHIP
-              </button>
-              <button
-                id="quick-nav-journal"
-                onClick={() => handleRouteClick('press')}
-                className={`font-mono-kitchen text-[11px] tracking-[2px] transition-colors ${
-                  currentRoute === 'press' ? 'text-[#f5f0e8] underline underline-offset-8 decoration-[#c1651a]' : 'text-[#9c9488] hover:text-[#f5f0e8]'
-                }`}
-              >
-                JOURNAL
               </button>
             </nav>
           </div>
@@ -241,7 +230,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                   Culinary Consulting
                 </h4>
                 <p className="font-text text-[13px] text-[#9c9488]">
-                  Kitchen line ergonomics, tasting menu R&D, operating cost modeling, brigade standard operating procedures.
+                  Kitchen line design, tasting menu R&D, operating cost modeling, brigade standard operating procedures.
                 </p>
               </div>
 
@@ -281,7 +270,9 @@ export const Navigation: React.FC<NavigationProps> = ({
           <div className="max-w-7xl w-full mx-auto pt-6 border-t border-[#2a2825] flex flex-col sm:flex-row items-center justify-between text-xs text-[#9c9488] font-mono-kitchen tracking-[1.5px]">
             <span>ADAM YOHO · 24 YEARS AT THE STOVE</span>
             <div className="flex space-x-6 mt-4 sm:mt-0">
-              <span className="text-[#f5f0e8]">DIRECT: ATELIER@ADAMYOHO.COM</span>
+              <a href="mailto:chef@adamyoho.com" className="text-[#f5f0e8] hover:text-[#c1651a] transition-colors">
+                DIRECT: CHEF@ADAMYOHO.COM
+              </a>
               <span>TEXAS HILL COUNTRY · AUSTIN · PITTSBURGH · COLUMBUS</span>
             </div>
           </div>

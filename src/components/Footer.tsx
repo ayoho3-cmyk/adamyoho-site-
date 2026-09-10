@@ -96,6 +96,14 @@ export const Footer: React.FC<FooterProps> = ({
                 CMS DATA HUB
               </button>
             </div>
+            <div>
+              <a
+                href="mailto:chef@adamyoho.com"
+                className="font-mono-kitchen text-[11px] tracking-[2px] text-[#9c9488] hover:text-[#c1651a] transition-colors block pt-1"
+              >
+                DIRECT: CHEF@ADAMYOHO.COM
+              </a>
+            </div>
           </div>
 
           {/* Col 2: The Practices */}
@@ -156,24 +164,6 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#f5f0e8] transition-colors"
                 >
                   ABOUT / 24 YEARS
-                </button>
-              </li>
-              <li>
-                <button
-                  id="footer-link-press"
-                  onClick={() => handleLink('press')}
-                  className="hover:text-[#f5f0e8] transition-colors"
-                >
-                  PRESS & JOURNAL
-                </button>
-              </li>
-              <li>
-                <button
-                  id="footer-link-testimonials"
-                  onClick={() => handleLink('testimonials')}
-                  className="hover:text-[#f5f0e8] transition-colors"
-                >
-                  TESTIMONIALS
                 </button>
               </li>
               <li>
@@ -243,7 +233,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom Bar */}
         <div className="pt-10 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 text-[12px] font-text text-[#9c9488]">
           <div className="space-y-1 text-center md:text-left">
-            <p>© 2026 Adam Yoho LLC. All rights reserved.</p>
+            <p>© 2026 Standard Ventures LLC. All rights reserved.</p>
             <p className="text-[11px] text-[#666057]">
               Sourced via Texas regenerative farms and sustainable day-boat fisheries. All culinary services are subject to seasonal availability.
             </p>

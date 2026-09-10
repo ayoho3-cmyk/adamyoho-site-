@@ -16,7 +16,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['All', 'Essays', 'Recipes', 'Technique', 'Press'];
+  const categories = ['All', 'Essays', 'Technique', 'Press'];
 
   const filteredArticles = (articles || []).filter((art) => {
     const matchesCat = selectedCategory === 'All' || art.category === selectedCategory;
@@ -40,7 +40,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
             Press & Kitchen Journal
           </h1>
           <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
-            Essays on thermodynamic fire control, heirloom purveyors, and recipe architecture pulled directly from twenty-five years at the stove.
+            Essays on thermodynamic fire control, heirloom purveyors, and line leadership pulled directly from twenty-four years at the stove.
           </p>
         </div>
       </section>
@@ -73,7 +73,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search essays, techniques, recipes..."
+              placeholder="Search essays, techniques, dispatches..."
               className="w-full bg-[#161514] border border-[#2a2825] pl-10 pr-4 py-2 text-xs font-text text-[#f5f0e8] placeholder-[#9c9488] focus:border-[#f5f0e8] outline-none"
             />
           </div>

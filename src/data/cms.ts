@@ -2,23 +2,22 @@ import { Article, Testimonial, FAQItem, EventGalleryItem, ConsultingCaseStudy } 
 
 export const INITIAL_ARTICLES: Article[] = [
   {
-    slug: 'architecture-of-fire-25-years',
-    title: 'The Architecture of Fire: 25 Years Managing Wood and Embers',
-    subtitle: 'On the thermodynamic patience required when gas is removed from the kitchen pass.',
+    slug: 'first-steps',
+    title: 'First Steps',
+    subtitle: 'From Bob Ross and great chefs on television to twenty-four years behind the line.',
     category: 'Essays',
-    date: '14. OCTOBER 2025',
-    readTime: '6 MIN READ',
-    heroImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80',
-    caption: 'THE WOOD HEARTH, POST-SERVICE ASHING DOWN AT 00:30',
-    excerpt: 'Wood is not a dial. It is a live organism with moisture, pitch, and memory. The cook who treats oak like propane will spend their service chasing temperatures they can never recover.',
+    date: 'SEPTEMBER 2026',
+    readTime: '5 MIN READ',
+    heroImage: '/first-steps-hero.jpg',
+    caption: 'GOLDEN CROQUETTES WITH REMOULADE & MICROGREENS · THE CRAFT BEHIND THE LINE',
+    excerpt: 'I would get home from school and make some garbage food, retreat to my basement and watch Bob Ross, dozing off until Great Chefs, Great Cities came on. It was at this point that unheard ingredients like truffles and caul fat piqued a curiosity that would consume the next 24 years.',
     body: [
-      'When I began cooking in 1999 under classical French brigades, heat was something you demanded from brass turncocks. You turned the knob; twelve thousand BTUs obeyed. It was instantaneous, clean, and entirely divorced from the forest.',
-      'Twelve years later, when I transitioned the atelier to open-flame hearth cooking, the first three months were a humbling disaster. Proteins seized. Broths charred too fast. Sauces evaporated into astringency. The mistake was arrogance: I was attempting to impose kitchen schedules upon slow-cured white oak.',
-      'Fire has three distinct phases, each belonging to a different category of ingredient. The blaze belongs only to searing root vegetables and blistered flatbreads. The glowing coals—white on the crust, scarlet beneath—are where dry-aged rib racks and whole turbots find equilibrium. The cool ash bed at the flank is where alliums sit overnight until their sugars caramelize without ever seeing direct flame.',
-      'After twenty-five years, the most important lesson at the stove remains thermodynamic humility: you do not force heat onto an ingredient; you create a zone where heat invites the moisture forward.'
+      'I remember cooking when I was young. In high school, my dad traveled for work, my sister was away at college, and my mom was a nurse. I would get home from school and make some garbage food, retreat to my basement and watch Bob Ross. I recall the day, belly full, dozing off to the dulcet tones of Bob Ross talking to the happy little trees. I woke up just in time for the iconic Ross signature. It was at this point that I discovered Great Chefs, Great Cities. Here I discovered unheard ingredients like truffles and caul fat, definitely not things common on the table growing up in West Virginia. My interests were piqued. I searched out other cooking shows. Martin Yan wielding a massive cleaver with elegance and grace, Graham Kerr being witty with his slightly creepy British charm, and Julia making cooking look enjoyable and possible for everyone.',
+      'I was intrigued by how food mattered to these people, how ingredients and techniques were important. It was then I decided, as a good son, I would have dinner for my mom when she got home from work. I can’t recall what I ever made, and I am sure none of it was very good. But I convinced myself at least my mom would not have to cook a meal after a long day in an OB/GYN office.',
+      'I remember, once, trying to make a souffle. All I knew was eggs and sugar. Needless to say, the dry, overly sweet baked omelet was definitely not like the souffles I saw on TV. I contemplated going to culinary school right after high school. Due to peer pressure and the conviction that I would be a lawyer I decided to go to college instead. Needless to say frat parties, binge drinking and debauchery stood in my way of law school. It wasn’t until graduating college and trying my craft in the very distinguished world of rental cars, that I decided to follow my passions into the world of culinary arts.',
+      'Little did I know at the time, but this journey would consume the next 24 plus years of my life. I would never work at 4 star restaurants or in big time markets. I worked in small towns and decent sized cities. I worked in successful restaurants and huge failures, pizza shops and fancy steakhouses. I chased money and titles and ate huge slices of humble pie. The lessons learned through long hours, hard work and dedication go far beyond the walls of a professional kitchen. I would compile the list of Rules of the kitchen over the course of my career. I would add some, delete some, and amend some. These rules may look to be kitchen specific, but I feel that these lessons can be carried throughout life, whether you work in a kitchen or just utilize them in your day to day life. So here we go!'
     ],
-    chefNotes: 'Never use resinous softwoods such as pine or cedar for direct hearth coals. Seasoned California white oak and cherry provide the neutral, steady ember bed required for delicate finfish.',
-    harvestProvenance: 'White Oak harvested from sustainably managed Mendocino County groves, seasoned 24 months.',
+    chefNotes: 'These rules may look to be kitchen specific, but I feel that these lessons can be carried throughout life, whether you work in a kitchen or just utilize them in your day to day life.',
     featured: true
   },
   {
@@ -233,7 +232,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     location: 'Carmel-by-the-Sea, California',
     format: '10-Course Bespoke Tasting Menu',
     guestCount: '10 Guests',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+    image: '/bespoke-events-dinner.jpg',
     caption: 'PLATING THE AGED DUCK BREAST AND ROASTED CHANTERELLES',
     tag: 'Private Dining'
   },
@@ -317,9 +316,9 @@ export const CONSULTING_CASE_STUDIES: ConsultingCaseStudy[] = [
 export const TIMELINE_EVENTS = [
   {
     year: '2002–2006',
-    title: 'Culinary Genesis at Food Studio',
+    title: 'Culinary Genesis at The Food Studio',
     location: 'Atlanta, Georgia',
-    description: 'Career began at Food Studio in Atlanta, Georgia. Mastered classical foundations, wood-fired line execution, butchery, and brigade communication in a high-standard kitchen.'
+    description: 'Career began at The Food Studio in Atlanta, Georgia. Mastered classical foundations, wood-fired line execution, butchery, and brigade communication in a high-standard kitchen.'
   },
   {
     year: '2007–2015',
@@ -344,27 +343,82 @@ export const TIMELINE_EVENTS = [
 export const KITCHEN_PRINCIPLES = [
   {
     number: '01',
-    title: 'Subtractive Discipline',
-    description: 'Perfection is not reached when there is nothing left to add, but when nothing can be removed without breaking the truth of the dish.'
+    title: 'Respect the Food',
+    description: 'Something had to die to be here.'
   },
   {
     number: '02',
-    title: 'Thermodynamic Humility',
-    description: 'Heat is not an instrument of force; it is an invitation. The ember, the iron, and the salt must work in patience.'
+    title: 'Respect the Guest',
+    description: '$$$$ makes the restaurant go round.'
   },
   {
     number: '03',
-    title: 'Station Silence',
-    description: 'A loud kitchen is a panicked kitchen. When every cook understands their space and respects the clock, service flows in quiet harmony.'
+    title: 'Respect the Staff',
+    description: 'We are family. Someone will eventually piss you off, but we are all here for a common goal.'
   },
   {
     number: '04',
-    title: 'Purveyor Fidelity',
-    description: 'The chef is the final steward of the farmer’s labor, the fisherman’s wake, and the season’s rain. Never mask what the earth took months to grow.'
+    title: 'The Standard',
+    description: 'The way you do anything is the way you do everything..'
   },
   {
     number: '05',
-    title: 'Generosity of the Pass',
-    description: 'Twenty-five years at the stove is meaningless if it does not leave the diner nourished in spirit and the next generation of cooks empowered to surpass us.'
+    title: 'Cleanliness is Next to Godliness',
+    description: 'You might not see god, but you sure can see cleanliness.'
+  },
+  {
+    number: '06',
+    title: 'Mise en Place',
+    description: 'Don’t fuck with the mise en place. Everything in its place, keep it in its place.'
+  },
+  {
+    number: '07',
+    title: 'Station Order',
+    description: 'Put it back where it belongs.'
+  },
+  {
+    number: '08',
+    title: 'Salt and Pepper',
+    description: 'Salt and pepper do not get premixed.'
+  },
+  {
+    number: '09',
+    title: 'Sweat the Details',
+    description: 'The difference between good and great is always small details.'
+  },
+  {
+    number: '10',
+    title: 'Quality & Speed',
+    description: 'Never sacrifice quality for speed. Never sacrifice speed for quality. Know the difference and be prepared for both.'
+  },
+  {
+    number: '11',
+    title: 'You Start It, You Own It',
+    description: 'You start it, you own. Don’t walk away and assume it will finish itself.'
+  },
+  {
+    number: '12',
+    title: 'Taste Your Cooking',
+    description: 'Always taste your cooking. If it ain’t right, don’t serve it.'
+  },
+  {
+    number: '13',
+    title: 'Storage Discipline',
+    description: 'Don’t open a new one if one is already open!!!!'
+  },
+  {
+    number: '14',
+    title: 'Sharp Knives, Sharp Minds',
+    description: 'Sharp knives, sharp minds.'
+  },
+  {
+    number: '15',
+    title: 'Strive for Wu Wei',
+    description: 'Strive for Wu Wei.'
+  },
+  {
+    number: '16',
+    title: 'Have Fun!',
+    description: 'Have fun!'
   }
 ];

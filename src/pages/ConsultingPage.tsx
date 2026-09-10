@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { RoutePath, Testimonial } from '../types';
-import { CONSULTING_CASE_STUDIES } from '../data/cms';
-import { ArrowRight, Check, Clock, TrendingUp, Layers, ChefHat, FileSpreadsheet, ShieldCheck, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { ScheduleEmbed } from '../components/ScheduleEmbed';
 
 interface ConsultingPageProps {
@@ -12,27 +11,25 @@ interface ConsultingPageProps {
 
 export const ConsultingPage: React.FC<ConsultingPageProps> = ({
   onNavigate,
-  testimonials = [],
   onOpenCalendly
 }) => {
   const [showInlineScheduler, setShowInlineScheduler] = useState(false);
-  const consultingTestimonials = (testimonials || []).filter(t => t.serviceType === 'consulting');
 
   const pillars = [
     {
       num: '01',
-      title: 'Kitchen Line & Ergonomic Architecture',
-      desc: 'Optimizing spatial footpaths, sauté-to-pass transfer geometry, station cold-drawers, and brigade flow to eliminate micro-bottlenecks during peak service covers.'
+      title: 'Kitchen Line Design & Efficiency',
+      desc: 'Optimizing station flows and increased line operations.'
     },
     {
       num: '02',
-      title: 'Tasting Menu R&D & Recipe Bibles',
-      desc: 'Developing mathematically-paced, 8-to-12 course seasonal tasting progressions. Creating standardized station bibles with gram-accurate yields, prep timing, and plating specs.'
+      title: 'Menu Design & Recipe Bibles',
+      desc: 'Develop concept-appropriate menus, standardized recipe bibles, prep lists, station guides, and plating specs.'
     },
     {
       num: '03',
       title: 'Operating Cost Engineering & Waste Elimination',
-      desc: 'Whole-animal butchery cross-utilization, yield audit protocols, direct micro-purveyor contract negotiations, and precision prime-cost margin control.'
+      desc: 'Product cross-utilization, yield audit protocols, purveyor contract negotiations, and precision prime-cost margin control.'
     },
     {
       num: '04',
@@ -73,31 +70,45 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
       
       {/* 1. Hero Header */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20">
-        <div className="max-w-4xl space-y-6">
-          <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
-            PRACTICE AREA 01 · HOSPITALITY ADVISORY
-          </span>
-          <h1 className="font-display text-[36px] sm:text-[54px] md:text-[64px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
-            Culinary Consulting & Kitchen Architecture
-          </h1>
-          <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
-            Translating twenty-five years of Michelin-track kitchen standards into ergonomic line operations, disciplined menu development, and sustainable restaurant profitability.
-          </p>
-          <div className="pt-4 flex flex-wrap gap-4 items-center">
-            <button
-              id="consulting-inquire-cta-btn"
-              onClick={() => onNavigate('contact', { branch: 'consulting' })}
-              className="btn-pill-transparent text-[12px] px-8 py-3"
-            >
-              INQUIRE ABOUT CONSULTING
-            </button>
-            <button
-              id="consulting-calendly-btn"
-              onClick={onOpenCalendly}
-              className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
-            >
-              BOOK 20-MIN SCOPING CALL
-            </button>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
+              PRACTICE AREA 01 · HOSPITALITY ADVISORY
+            </span>
+            <h1 className="font-display text-[36px] sm:text-[52px] md:text-[60px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
+              Culinary Consulting & Kitchen Architecture
+            </h1>
+            <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
+              Translating over 23 years experience into efficient line operations, disciplined menu development, and sustainable restaurant profitability.
+            </p>
+            <div className="pt-4 flex flex-wrap gap-4 items-center">
+              <button
+                id="consulting-inquire-cta-btn"
+                onClick={() => onNavigate('contact', { branch: 'consulting' })}
+                className="btn-pill-transparent text-[12px] px-8 py-3"
+              >
+                INQUIRE ABOUT CONSULTING
+              </button>
+              <button
+                id="consulting-calendly-btn"
+                onClick={onOpenCalendly}
+                className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
+              >
+                BOOK 20-MIN SCOPING CALL
+              </button>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="aspect-[4/3] overflow-hidden bg-[#161514] border border-[#2a2825]">
+              <img
+                src="/culinary-knives-roll.jpg"
+                alt="Chef Adam Yoho - Culinary Knives & Tool Roll"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -168,119 +179,8 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
         </div>
       </section>
 
-      {/* 4. Detailed Case Studies */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20 border-t border-[#1c1a18] pt-20">
-        <div className="space-y-4 mb-16">
-          <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
-            PROVEN OUTCOMES
-          </span>
-          <h2 className="font-display text-[30px] sm:text-[42px] tracking-[2px] uppercase text-[#f5f0e8]">
-            Selected Case Studies
-          </h2>
-        </div>
-
-        <div className="space-y-16">
-          {CONSULTING_CASE_STUDIES.map((cs) => (
-            <div
-              key={cs.id}
-              className="bg-[#161514] border border-[#2a2825] p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10"
-            >
-              <div className="lg:col-span-5 space-y-6">
-                <div className="aspect-[4/3] overflow-hidden bg-[#0d0d0c] border border-[#2a2825]">
-                  <img
-                    src={cs.image}
-                    alt={cs.title}
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="grid grid-cols-3 gap-4 border-t border-[#2a2825] pt-4 text-center">
-                  {cs.metrics.map((m) => (
-                    <div key={m.label} className="space-y-1">
-                      <span className="font-display text-[22px] sm:text-[26px] text-[#c1651a] block">
-                        {m.value}
-                      </span>
-                      <span className="font-mono-kitchen text-[9px] tracking-[1.5px] text-[#9c9488] block uppercase">
-                        {m.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="lg:col-span-7 space-y-6">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#2a2825] pb-3">
-                  <span className="font-mono-kitchen text-[11px] tracking-[2px] text-[#c1651a]">
-                    {cs.client} · {cs.location}
-                  </span>
-                  <span className="font-mono-kitchen text-[11px] tracking-[1.5px] text-[#9c9488]">
-                    DURATION: {cs.duration}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-[24px] sm:text-[28px] tracking-[1.5px] uppercase text-[#f5f0e8]">
-                  {cs.title}
-                </h3>
-
-                <div className="space-y-4 font-text text-[15px] text-[#d4cfc4] leading-relaxed">
-                  <div>
-                    <strong className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] uppercase block mb-1">
-                      THE OPERATIONAL CHALLENGE:
-                    </strong>
-                    <p>{cs.challenge}</p>
-                  </div>
-                  <div>
-                    <strong className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] uppercase block mb-1">
-                      THE ADVISORY INTERVENTION:
-                    </strong>
-                    <p>{cs.solution}</p>
-                  </div>
-                  <div>
-                    <strong className="font-mono-kitchen text-[11px] tracking-[2px] text-[#5fa657] uppercase block mb-1">
-                      THE LONG-TERM OUTCOME:
-                    </strong>
-                    <p>{cs.outcome}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. Consulting Testimonials */}
-      {consultingTestimonials.length > 0 && (
-        <section className="max-w-5xl mx-auto px-6 sm:px-12 md:px-20 border-t border-[#1c1a18] pt-20">
-          <div className="text-center space-y-4 mb-12">
-            <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
-              RESTAURATEUR & OPERATOR VOICES
-            </span>
-            <h2 className="font-display text-[28px] sm:text-[36px] tracking-[2px] uppercase text-[#f5f0e8]">
-              Client Endorsements
-            </h2>
-          </div>
-
-          <div className="space-y-8">
-            {consultingTestimonials.map((t) => (
-              <div key={t.id} className="bg-[#161514] border border-[#2a2825] p-8 space-y-4">
-                <p className="font-text text-[17px] text-[#f5f0e8] leading-relaxed italic">
-                  “{t.quote}”
-                </p>
-                <div className="border-t border-[#2a2825] pt-4 flex items-center justify-between font-mono-kitchen text-[11px]">
-                  <span className="text-[#f5f0e8] tracking-[1.5px] uppercase font-display text-[14px]">
-                    {t.author} — {t.title}
-                  </span>
-                  <span className="text-[#9c9488]">{t.establishmentOrContext}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* 6. Closing Action Funnel & Interactive Scheduler */}
-      <section className="max-w-4xl mx-auto px-6 space-y-8 pt-12">
+      {/* 4. Closing Action Funnel & Interactive Scheduler */}
+      <section className="max-w-4xl mx-auto px-6 space-y-8 pt-12 border-t border-[#1c1a18]">
         <div className="p-10 bg-[#161514] border border-[#423e38] space-y-6 text-center">
           <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
             READY TO ELEVATE YOUR KITCHEN OPERATIONS?

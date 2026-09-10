@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RoutePath } from '../types';
 import { TIMELINE_EVENTS, KITCHEN_PRINCIPLES } from '../data/cms';
 import { ArrowRight, Flame, Award, BookOpen, Clock } from 'lucide-react';
@@ -9,6 +9,9 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly }) => {
+  const [portraitUrl] = useState<string>(() => {
+    return localStorage.getItem('chef_adam_portrait_url') || '/chef-adam-yoho-bio.jpg';
+  });
   return (
     <div id="about-page-container" className="pt-28 pb-24 text-[#f5f0e8] space-y-24 sm:space-y-32">
       
@@ -24,10 +27,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
               Twenty-Four Years Behind the Line.
             </h1>
             <p className="font-text text-[18px] sm:text-[20px] text-[#e8e3d8] leading-relaxed">
-              Career began at Food Studio in Atlanta, Georgia.
+              Twenty four years at the pass, began at The Food Studio in Atlanta and has spanned from the Texas Hill Country to Columbus, Ohio; from Pittsburgh to Austin.
             </p>
             <p className="font-text text-[16px] text-[#d4cfc4] leading-relaxed">
-              Over the course of 24 years, has led teams from pizza shops to high end steakhouse, taquerias to bistros, and been part of 8 openings including owning Uptown 51. He has developed an approach defined by radical ingredient honesty, station stillness, and thermodynamic precision.
+              Over the course of 24 years, has led teams from pizza shops to high end steakhouse, taquerias to bistros, and been part of 8 openings including owning Uptown 51. He has developed an approach defined by passionate ingredient sourcing, calm, concentrated service, and classic technique.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
               <button
@@ -52,10 +55,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             <div className="relative">
               <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-2 border-[#2a2825] p-2 bg-[#161514] shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1000&q=85"
+                  src={portraitUrl}
                   alt="Chef Adam Yoho portrait"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover rounded-full filter grayscale contrast-125"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-[#161514] border border-[#2a2825] px-4 py-1.5 whitespace-nowrap shadow-lg">

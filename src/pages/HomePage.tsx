@@ -1,6 +1,8 @@
 import React from 'react';
 import { RoutePath, Article, Testimonial } from '../types';
-import { ArrowRight, ChevronRight, Sparkles, Flame, Users, ChefHat, ExternalLink, ArrowUpRight, Tv, Newspaper, Radio, Award } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import kitchenPassHero from '../assets/images/kitchen_pass_hero.jpg';
+import bespokeEventsDinner from '../assets/images/bespoke_events_dinner.jpg';
 
 interface HomePageProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
@@ -25,45 +27,6 @@ export const HomePage: React.FC<HomePageProps> = ({
     ? articles
     : [];
 
-  const mediaAndPressItems = [
-    {
-      outlet: 'THE NEW YORK TIMES',
-      badge: 'FEATURE PROFILE',
-      title: 'In Chef Adam Yoho’s Hands, Silence is an Ingredient',
-      desc: 'A retrospective on culinary standards, station discipline, and kitchen craftsmanship away from the cameras.',
-      linkType: 'article',
-      slug: 'nyt-profile-silence-is-an-ingredient',
-      icon: Newspaper
-    },
-    {
-      outlet: 'HOSPITALITY BROADCAST & TV',
-      badge: 'TV APPEARANCE',
-      title: 'Master Line Execution & Station Ergonomics',
-      desc: 'Demonstrating heat control, station speed, and quiet leadership on the live commercial line.',
-      linkType: 'external',
-      url: 'https://youtube.com',
-      icon: Tv
-    },
-    {
-      outlet: 'CULINARY ADVISORY CHRONICLE',
-      badge: 'CASE STUDY',
-      title: 'Opening Night Precision: Across 8 Restaurant Launches',
-      desc: 'How whole-animal utilization and brigade station layout prevent opening-month margin loss.',
-      linkType: 'route',
-      route: 'consulting',
-      icon: Award
-    },
-    {
-      outlet: 'REGIONAL DINING JOURNAL',
-      badge: 'PRESS ARCHIVE',
-      title: 'From Uptown 51 to Executive Consulting',
-      desc: 'Lessons from 24 years leading kitchens from taquerias and pizza shops to high-end steakhouses.',
-      linkType: 'route',
-      route: 'about',
-      icon: Radio
-    }
-  ];
-
   return (
     <div id="homepage-container" className="space-y-0 text-[#f5f0e8]">
       
@@ -75,10 +38,10 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Background Culinary Photography with Linear Dark Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=2000&q=85"
-            alt="Chef Adam Yoho at the pass with open fire"
+            src={kitchenPassHero}
+            alt="Chef Adam Yoho kitchen line and hearth pass with suspended shelving and warm Edison filament lighting"
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center filter brightness-50 contrast-125 transition-transform duration-1000 scale-105"
+            className="w-full h-full object-cover object-center filter brightness-60 contrast-115 transition-transform duration-1000 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0c] via-[#0d0d0c]/60 to-[#0d0d0c]/30" />
           <div className="absolute inset-0 culinary-grain pointer-events-none" />
@@ -129,7 +92,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           RULES OF THE KITCHEN
         </span>
         <blockquote className="font-display text-[24px] sm:text-[34px] md:text-[40px] tracking-[2px] uppercase text-[#f5f0e8] leading-[1.25]">
-          “Over 23 years behind the line teaches you one enduring truth: you do not force greatness upon an ingredient; you create the conditions where its nature is honored.”
+          “Over 23 years behind the line teaches you one enduring truth: you do not force greatness, its achieved through patience, resilience, dedicated technique, and well oiled teamwork.”
         </blockquote>
         <div className="w-12 h-[1px] bg-[#c1651a] mx-auto" />
         <p className="font-text text-[16px] sm:text-[18px] text-[#d4cfc4] leading-relaxed max-w-2xl mx-auto">
@@ -173,8 +136,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="space-y-6">
               <div className="aspect-[4/3] overflow-hidden bg-[#161514] border border-[#1f1d1b]">
                 <img
-                  src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80"
-                  alt="Culinary Consulting Line Architecture"
+                  src="/culinary-knives-roll.jpg"
+                  alt="Culinary Consulting & Kitchen Line Design"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -187,7 +150,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Culinary Consulting
               </h3>
               <p className="font-text text-[15px] text-[#d4cfc4] leading-relaxed">
-                Kitchen line ergonomics, concept development, station timing optimization, and operating cost engineering for hospitality operators.
+                Kitchen line design, concept development, station timing optimization, and operating cost engineering for hospitality operators.
               </p>
             </div>
             <div className="pt-8 border-t border-[#1c1a18] mt-6 flex items-center justify-between">
@@ -207,8 +170,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="space-y-6">
               <div className="aspect-[4/3] overflow-hidden bg-[#161514] border border-[#1f1d1b]">
                 <img
-                  src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
-                  alt="Bespoke Private Dining"
+                  src={bespokeEventsDinner}
+                  alt="Bespoke Events candlelit private dining table gathering at twilight"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -220,7 +183,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Bespoke Events
               </h3>
               <p className="font-text text-[15px] text-[#d4cfc4] leading-relaxed">
-                Custom multi-course dining experiences, vineyard harvest banquets, and intimate culinary salons (8 to 60 seated guests).
+                Custom multi-course dining experiences and intimate culinary events.
               </p>
             </div>
             <div className="pt-8 border-t border-[#1c1a18] mt-6 flex items-center justify-between">
@@ -240,8 +203,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="space-y-6">
               <div className="aspect-[4/3] overflow-hidden bg-[#161514] border border-[#1f1d1b]">
                 <img
-                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80"
-                  alt="Chef Mentorship and Coaching"
+                  src="/mentorship-pans.jpg"
+                  alt="Chef Mentorship and Kitchen Line Craft"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -268,73 +231,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 4. PRESS, MEDIA & CREDIBILITY (News Articles, TV Appearances & Features) */}
-      <section id="press-strip" className="py-20 bg-[#131211] border-y border-[#2a2825] px-6 sm:px-12 md:px-20">
-        <div className="max-w-7xl mx-auto space-y-12">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between space-y-3 md:space-y-0">
-            <div>
-              <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block mb-1">
-                MEDIA, BROADCASTS & CREDIBILITY
-              </span>
-              <h2 className="font-display text-[26px] sm:text-[34px] tracking-[2px] uppercase text-[#f5f0e8]">
-                Press & Features
-              </h2>
-            </div>
-            <span className="font-mono-kitchen text-[11px] tracking-[2px] text-[#9c9488]">
-              NEWS ARTICLES · BROADCAST APPEARANCES · ADVISORY ARCHIVE
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mediaAndPressItems.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={idx}
-                  onClick={() => {
-                    if (item.linkType === 'route' && item.route) {
-                      onNavigate(item.route as RoutePath);
-                    } else if (item.linkType === 'article' && item.slug) {
-                      const found = displayArticles.find(a => a.slug === item.slug);
-                      if (found) onSelectArticle(found);
-                      else onNavigate('press');
-                    } else if (item.url) {
-                      window.open(item.url, '_blank', 'noopener,noreferrer');
-                    }
-                  }}
-                  className="bg-[#0d0d0c] border border-[#2a2825] p-6 flex flex-col justify-between hover:border-[#423e38] transition-all cursor-pointer group"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono-kitchen text-[10px] tracking-[2px] text-[#c1651a]">
-                        {item.badge}
-                      </span>
-                      <Icon className="w-4 h-4 text-[#9c9488] group-hover:text-[#f5f0e8] transition-colors" />
-                    </div>
-                    <span className="font-display text-[14px] sm:text-[15px] tracking-[2px] text-[#f5f0e8] uppercase block">
-                      {item.outlet}
-                    </span>
-                    <h3 className="font-text text-[15px] text-[#e8e3d8] leading-snug group-hover:text-[#f5f0e8] transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="font-text text-[13px] text-[#9c9488] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                  <div className="pt-6 border-t border-[#1c1a18] mt-6 flex items-center justify-between font-mono-kitchen text-[11px] tracking-[1.5px] text-[#9c9488] group-hover:text-[#c1651a] transition-colors">
-                    <span>EXPLORE FEATURE</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5. JOURNAL TEASER PREVIEW */}
+      {/* 4. JOURNAL TEASER PREVIEW */}
       <section id="journal-teaser-section" className="py-20 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 space-y-3 md:space-y-0">
           <div>
@@ -350,7 +247,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             onClick={() => onNavigate('press')}
             className="font-mono-kitchen text-[12px] tracking-[2px] text-[#9c9488] hover:text-[#f5f0e8] transition-colors"
           >
-            VIEW ALL ESSAYS & RECIPES →
+            VIEW ALL DISPATCHES →
           </button>
         </div>
 

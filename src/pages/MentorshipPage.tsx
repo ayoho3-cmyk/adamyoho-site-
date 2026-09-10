@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RoutePath, Testimonial } from '../types';
-import { ArrowRight, ChefHat, Check, Award, Compass, HeartHandshake, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { ScheduleEmbed } from '../components/ScheduleEmbed';
 
 interface MentorshipPageProps {
@@ -11,11 +11,9 @@ interface MentorshipPageProps {
 
 export const MentorshipPage: React.FC<MentorshipPageProps> = ({
   onNavigate,
-  testimonials = [],
   onOpenCalendly
 }) => {
   const [showInlineScheduler, setShowInlineScheduler] = useState(false);
-  const mentorshipTestimonials = (testimonials || []).filter(t => t.serviceType === 'mentorship');
 
   const syllabusStages = [
     {
@@ -23,9 +21,9 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
       title: 'Station Speed & Mental Mise-en-Place',
       focus: 'Eliminating Motion Waste & Building Internal Stillness',
       points: [
-        'Kinesthetic station setup: towel placement, knife angles, and heat management',
-        'Managing 20+ ticket simultaneous pans without escalating heart rate',
-        'Protein sighting: touch, bone resistance, and resting thermodynamics without meat thermometers'
+        'Proper line set up',
+        'Managing the flow of service',
+        'Proper cookery techniques'
       ]
     },
     {
@@ -34,7 +32,6 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
       focus: 'Subtractive Cooking & Micro-Seasoning',
       points: [
         'Deconstructing classical sauce reductions, acids, and emulsion balances',
-        'Designing 8-course progressions with rhythm and no palate fatigue',
         'Sourcing purveyor negotiations and respecting seasonal harvest limits'
       ]
     },
@@ -55,31 +52,45 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
       
       {/* 1. Hero Header */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20">
-        <div className="max-w-4xl space-y-6">
-          <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
-            PRACTICE AREA 03 · LINE MASTERY
-          </span>
-          <h1 className="font-display text-[36px] sm:text-[54px] md:text-[64px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
-            Master Culinary Mentorship & Stage Coaching
-          </h1>
-          <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
-            Direct, intensive coaching for working sous chefs, chef de parties, and culinary leaders preparing to take command of their own kitchen pass.
-          </p>
-          <div className="pt-4 flex flex-wrap gap-4 items-center">
-            <button
-              id="mentorship-inquire-cta-btn"
-              onClick={() => onNavigate('contact', { branch: 'mentorship' })}
-              className="btn-pill-transparent text-[12px] px-8 py-3"
-            >
-              APPLY FOR MENTORSHIP
-            </button>
-            <button
-              id="mentorship-call-btn"
-              onClick={onOpenCalendly}
-              className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
-            >
-              SCHEDULE 20-MIN INTERVIEW
-            </button>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
+              PRACTICE AREA 03 · LINE MASTERY
+            </span>
+            <h1 className="font-display text-[36px] sm:text-[52px] md:text-[60px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
+              Master Culinary Mentorship & Stage Coaching
+            </h1>
+            <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
+              Direct, intensive coaching for working sous chefs, chef de parties, and culinary leaders preparing to take command of their own kitchen pass.
+            </p>
+            <div className="pt-4 flex flex-wrap gap-4 items-center">
+              <button
+                id="mentorship-inquire-cta-btn"
+                onClick={() => onNavigate('contact', { branch: 'mentorship' })}
+                className="btn-pill-transparent text-[12px] px-8 py-3"
+              >
+                APPLY FOR MENTORSHIP
+              </button>
+              <button
+                id="mentorship-call-btn"
+                onClick={onOpenCalendly}
+                className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
+              >
+                SCHEDULE 20-MIN INTERVIEW
+              </button>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="aspect-[4/3] overflow-hidden bg-[#161514] border border-[#2a2825]">
+              <img
+                src="/mentorship-pans.jpg"
+                alt="Chef Cookware & Station Pans Wall"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -135,38 +146,8 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
         </div>
       </section>
 
-      {/* 4. Mentee Testimonials */}
-      {mentorshipTestimonials.length > 0 && (
-        <section className="max-w-5xl mx-auto px-6 sm:px-12 md:px-20 border-t border-[#1c1a18] pt-20">
-          <div className="text-center space-y-4 mb-12">
-            <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
-              ALUMNI DISPATCHES
-            </span>
-            <h2 className="font-display text-[28px] sm:text-[36px] tracking-[2px] uppercase text-[#f5f0e8]">
-              Where Mentees Cook Today
-            </h2>
-          </div>
-
-          <div className="space-y-8">
-            {mentorshipTestimonials.map((t) => (
-              <div key={t.id} className="bg-[#161514] border border-[#2a2825] p-8 space-y-4">
-                <p className="font-text text-[17px] text-[#f5f0e8] leading-relaxed italic">
-                  “{t.quote}”
-                </p>
-                <div className="border-t border-[#2a2825] pt-4 flex items-center justify-between font-mono-kitchen text-[11px]">
-                  <span className="text-[#f5f0e8] tracking-[1.5px] uppercase font-display text-[14px]">
-                    {t.author} — {t.title}
-                  </span>
-                  <span className="text-[#9c9488]">{t.establishmentOrContext}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* 5. Closing Application & Interactive Booking Embed */}
-      <section className="max-w-4xl mx-auto px-6 space-y-8 pt-12">
+      {/* 4. Closing Application & Interactive Booking Embed */}
+      <section className="max-w-4xl mx-auto px-6 space-y-8 pt-12 border-t border-[#1c1a18]">
         <div className="p-10 bg-[#161514] border border-[#423e38] space-y-6 text-center">
           <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
             QUARTERLY APPLICATION COHORT
