@@ -1,5 +1,4 @@
 
-Tsconfig · JSON
 {
   "compilerOptions": {
     "target": "ES2022",
