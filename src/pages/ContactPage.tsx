@@ -527,7 +527,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       className="w-full bg-[#0d0d0c] border border-[#423e38] text-[#f5f0e8] p-2.5 text-xs font-mono-kitchen"
                     >
                       <option value="Live Wood Hearth Chef’s Table (8–14 Guests)">Live Wood Hearth Chef’s Table (8–14 Guests)</option>
-                      <option value="Vineyard Terroir Banquet (16–60 Guests)">Vineyard Terroir Banquet (16–60 Guests)</option>
+                      <option value="Estate Terroir Banquet (16–60 Guests)">Estate Terroir Banquet (16–60 Guests)</option>
                       <option value="Private Estate Tasting Salon (6–20 Guests)">Private Estate Tasting Salon (6–20 Guests)</option>
                       <option value="Custom Culinary Commission">Custom Culinary Commission</option>
                     </select>

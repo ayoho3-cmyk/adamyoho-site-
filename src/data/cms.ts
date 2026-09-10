@@ -21,34 +21,78 @@ export const INITIAL_ARTICLES: Article[] = [
     featured: true
   },
   {
-    slug: 'charred-leeks-marrow-preserved-lemon',
-    title: 'Charred Leeks, Roasted Bone Marrow & 100-Day Salt-Preserved Lemon',
-    subtitle: 'A foundational study in fat, allium sweetness, and mineral salinity.',
+    slug: 'duck-schnitzel-brandied-cherries-rotkohl-spatzle',
+    title: 'Duck Schnitzel with Brandied Cherries, Rotkohl & Spätzle',
+    subtitle: 'A study in crisp poultry execution, sweet-tart fruit maceration, and classic hearthside winter garnishes.',
     category: 'Recipes',
-    date: '28. NOVEMBER 2025',
-    readTime: '8 MIN READ',
-    heroImage: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80',
-    caption: 'PLATED COURSE THREE: ASH-ROASTED ALLIUMS AND REDUCTION',
-    excerpt: 'The outer layers of the leek are sacrificed completely to the coals, turning to fragrant carbon while steaming the sweet tender heart in its own natural juices.',
+    date: '16. JANUARY 2023',
+    readTime: '6 MIN READ',
+    heroImage: '/duck-schnitzel.jpg',
+    caption: 'PLATED SPECIAL: DUCK SCHNITZEL, BRANDIED CHERRIES, BRAISED ROTKOHL & FRESH SPÄTZLE',
+    excerpt: 'Pounded duck breast executed through classical breading technique, paired with slow-braised sweet and sour cabbage, brandied cherries, and hand-pressed spätzle.',
     body: [
-      'This dish has remained in some permutation on my autumn tasting menu across fifteen seasons. It represents everything I believe about culinary restraint: take an overlooked peasant allium, subject it to severe heat, and balance its caramelized sweetness with the richest beef tallow and the sharpest fermented citrus.',
-      'The technique requires courage. You place whole, unpeeled winter leeks directly into glowing embers. To the untrained eye, you are ruining the product. But as the exterior blackens into a brittle insulating shell, the interior core braises in its own trapped vapor.',
-      'Split open at table, dressed with whipped bone marrow emulsified with aged sherry vinegar and shaved cured lemon rind, it needs neither truffles nor gold leaf to command the room.'
+      'Duck schnitzel bridges Central European alpine tradition with precision poultry craft. Removing the fatty duck skin allows the breast meat to be pounded evenly to half an inch, ensuring rapid, even frying while remaining tender and moist inside a golden panko shell.',
+      'The rendered duck skin is never discarded—it is diced small and crisped down over gentle heat to provide a salty, rich crunch across the plate that echoes the richness of the duck.',
+      'To cut the natural richness of the breaded cutlet, we balance the plate with warm braised Rotkohl simmered low with red wine vinegar and sugar, accompanied by the deep warmth of brandied cherries and freshly dropped nutmeg-scented spätzle.'
     ],
-    ingredients: [
-      { item: 'Winter King Leeks', spec: '4 large stalks, trimmed of green tips', provenance: 'Star Route Farms, Bolinas CA' },
-      { item: 'Canoe-Cut Beef Marrow Bones', spec: '2 pieces (400g), soaked in salt brine 24h', provenance: 'Niman Ranch Heritage Angus' },
-      { item: '100-Day Salt-Preserved Lemon', spec: '1 rind, rinsed & fine brunoise', provenance: 'Atelier Yoho Winter Larder' },
-      { item: 'Palomino Fino Sherry Vinegar', spec: '15ml, 30-year solera', provenance: 'Jerez de la Frontera, Spain' },
-      { item: 'Flaky Fleur de Sel', spec: 'To finish', provenance: 'Guérande, Brittany' }
+    recipeSections: [
+      {
+        title: '1. Duck Schnitzel',
+        ingredients: [
+          { item: 'Duck Breast', spec: '1 ea' },
+          { item: 'Egg', spec: '1 ea' },
+          { item: 'Panko', spec: '2 oz' },
+          { item: 'Flour', spec: '1 oz' }
+        ],
+        method: [
+          'Remove skin and pound duck breast until approximately 1/2 inch thick.',
+          'Execute standard breading procedure (flour, egg, panko).',
+          'Dice skin and render until crispy for garnish or accompaniment.'
+        ]
+      },
+      {
+        title: '2. Brandied Cherries',
+        ingredients: [
+          { item: 'Cherries', spec: '1 oz' },
+          { item: 'Sugar', spec: '1 oz' },
+          { item: 'Brandy', spec: '2 oz' }
+        ],
+        method: [
+          'Combine ingredients, macerate, and simmer according to standard preparation standards.'
+        ]
+      },
+      {
+        title: '3. Rotkohl (Red Cabbage)',
+        ingredients: [
+          { item: 'Red Cabbage', spec: '4 oz' },
+          { item: 'Sugar', spec: '¼ Cup' },
+          { item: 'Red Wine Vinegar', spec: '¼ cup' },
+          { item: 'Salt & Pepper', spec: 'To taste' }
+        ],
+        method: [
+          'Quarter and core red cabbage.',
+          'Thinly slice on a mandolin.',
+          'Heat vinegar and sugar in a rondeau and stir to dissolve sugar.',
+          'Add cabbage and cook on low heat for 45 minutes.'
+        ]
+      },
+      {
+        title: '4. Spätzle',
+        ingredients: [
+          { item: 'All Purpose Flour', spec: '4 oz' },
+          { item: 'Eggs', spec: '1 ea' },
+          { item: 'Water', spec: '⅓ cup' },
+          { item: 'Nutmeg', spec: 'dash' },
+          { item: 'Salt', spec: 'pinch' }
+        ],
+        method: [
+          'Combine all ingredients together in a large bowl and mix thoroughly.',
+          'Fill a deep hotel pan halfway with water; use a perforated hotel pan to press and form the spätzle directly into the boiling water.',
+          'Cook in small batches and cool immediately in an ice bath.'
+        ]
+      }
     ],
-    methodSteps: [
-      { step: 1, instruction: 'Bury whole unpeeled leeks in active hardwood embers for 18–22 minutes until charred black all around.' },
-      { step: 2, instruction: 'Roast bone marrow at 220°C for 14 minutes. Render and strain marrow fat while warm, whisking with sherry vinegar.' },
-      { step: 3, instruction: 'Carefully slit leek husks lengthwise; peel back blackened exterior and brush tender heart with warm marrow emulsion.' },
-      { step: 4, instruction: 'Garnish immediately with minced preserved lemon rind and fleur de sel crystals. Serve steaming hot.' }
-    ],
-    chefNotes: 'Ensure the leeks are dry before touching the coals; surface water will create muddy soot rather than a crisp carbonized crust.',
+    chefNotes: 'Always ensure your breading station is clean and dry. Render the diced skin slowly on low heat so the cracklings become completely crisp rather than chewy.',
     featured: true
   },
   {
@@ -122,9 +166,9 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
     id: 't-2',
     author: 'Claire St. Claire',
     title: 'Estate Director',
-    establishmentOrContext: 'St. Claire Vineyard & Reserve Cellars, Napa Valley',
+    establishmentOrContext: 'St. Claire Reserve Cellars, Napa Valley',
     serviceType: 'events',
-    quote: 'Chef Yoho designed and executed our 50th Anniversary Harvest Dinner over live vineyard oak coals for thirty international collectors. It was not merely dinner; it was the most transcendent culinary expression of our terroir we have ever hosted.',
+    quote: 'Chef Yoho designed and executed our 50th Anniversary Harvest Dinner over live oak coals for thirty international collectors. It was not merely dinner; it was the most transcendent culinary expression of our terroir we have ever hosted.',
     year: '2025',
     featured: true
   },
@@ -187,13 +231,13 @@ export const INITIAL_FAQS: FAQItem[] = [
     id: 'faq-3',
     category: 'Events',
     question: 'What is the guest capacity and geographical range for private dining experiences?',
-    answer: 'To preserve uncompromising culinary precision, private dining and hearth experiences are typically designed for 8 to 24 seated guests for multi-course tasting menus, or up to 60 guests for curated vineyard banquets. Chef Yoho travels domestically and internationally with his core brigade.'
+    answer: 'To preserve uncompromising culinary precision, private dining and hearth experiences are typically designed for 8 to 24 seated guests for multi-course tasting menus, or up to 60 guests for curated banquets. Chef Yoho travels domestically and internationally with his core brigade.'
   },
   {
     id: 'faq-4',
     category: 'Events',
     question: 'Can dietary preferences and allergies be accommodated?',
-    answer: 'Yes. With advance notice during intake, customized tasting sequences are tailored for guests with specific dietary requirements, seafood allergies, or plant-forward preferences while maintaining the thermodynamic and flavor profile of the menu.'
+    answer: 'Yes. With advance notice during intake, customized tasting sequences are tailored for guests with specific dietary requirements, seafood allergies, or plant-forward preferences while maintaining the high level of execution and flavor profile of the menu.'
   },
   {
     id: 'faq-5',
@@ -205,7 +249,7 @@ export const INITIAL_FAQS: FAQItem[] = [
     id: 'faq-6',
     category: 'Sourcing & Dietary',
     question: 'What is your sourcing philosophy and purveyor standard?',
-    answer: 'Every ingredient is sourced through direct relationships with organic biodynamic farms, day-boat sustainable fisheries, and heritage livestock purveyors who harvest in harmony with micro-seasons. We never cook with out-of-season cold-storage commodities.'
+    answer: 'Every ingredient is sourced through direct relationships with local farms, day-boat sustainable fisheries, and curated ranches that focus on sustainable practices.'
   },
   {
     id: 'faq-7',
@@ -218,13 +262,13 @@ export const INITIAL_FAQS: FAQItem[] = [
 export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
   {
     id: 'g-1',
-    title: 'The Autumn Vineyard Hearth Dinner',
+    title: 'The Autumn Estate Hearth Dinner',
     location: 'St. Helena, Napa Valley',
     format: '8-Course Live Wood Ember Tasting',
     guestCount: '16 Guests',
     image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80',
     caption: 'SERVICE COMMENCING AT TWILIGHT OVER SEASONED OAK EMBERS',
-    tag: 'Vineyard Banquets'
+    tag: 'Bespoke Banquets'
   },
   {
     id: 'g-2',
@@ -244,7 +288,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     guestCount: '24 Guests',
     image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
     caption: 'WHOLE DAY-BOAT ROCKFISH HUNG OVER DRIFTWOOD COALS',
-    tag: 'Vineyard Banquets'
+    tag: 'Bespoke Banquets'
   },
   {
     id: 'g-4',
@@ -274,7 +318,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     guestCount: '32 Guests',
     image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
     caption: 'NIGHT SERVICE UNDER LANTERNS IN OLD-GROWTH ZINFANDEL BLOCK',
-    tag: 'Vineyard Banquets'
+    tag: 'Bespoke Banquets'
   }
 ];
 
@@ -297,7 +341,7 @@ export const CONSULTING_CASE_STUDIES: ConsultingCaseStudy[] = [
   },
   {
     id: 'cs-2',
-    title: 'Boutique Vineyard Hotel Culinary Direction & Launch',
+    title: 'Boutique Estate Hotel Culinary Direction & Launch',
     client: 'Estate 1886 Hotel & Kitchen',
     location: 'Healdsburg, CA',
     duration: '24 Weeks',

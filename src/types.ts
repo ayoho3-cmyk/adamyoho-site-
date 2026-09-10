@@ -12,6 +12,12 @@ export type RoutePath =
 
 export type ServiceBranch = 'consulting' | 'events' | 'mentorship' | 'general';
 
+export interface RecipeSection {
+  title: string;
+  ingredients: { item: string; spec: string }[];
+  method: string[];
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -26,6 +32,7 @@ export interface Article {
   chefNotes?: string;
   ingredients?: { item: string; spec: string; provenance?: string }[];
   methodSteps?: { step: number; instruction: string }[];
+  recipeSections?: RecipeSection[];
   harvestProvenance?: string;
   featured?: boolean;
 }
@@ -57,7 +64,7 @@ export interface EventGalleryItem {
   guestCount: string;
   image: string;
   caption: string;
-  tag: 'Private Dining' | 'Vineyard Banquets' | 'Tasting Salons' | 'Atelier';
+  tag: 'Private Dining' | 'Bespoke Banquets' | 'Tasting Salons' | 'Atelier';
 }
 
 export interface ConsultingCaseStudy {

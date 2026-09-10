@@ -110,17 +110,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
         </div>
       </section>
 
-      {/* 3. The 5 Principles of the Stove */}
+      {/* 3. Rules of the Kitchen */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20 border-t border-[#1c1a18] pt-20">
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
             THE KITCHEN MANIFESTO
           </span>
           <h2 className="font-display text-[32px] sm:text-[44px] tracking-[2.5px] uppercase text-[#f5f0e8]">
-            Five Principles of the Stove
+            Rules of the Kitchen
           </h2>
           <p className="font-text text-[16px] text-[#9c9488]">
-            Standards cultivated across a quarter-century of hot services, informing every advisory engagement and tasting menu.
+            Standards cultivated across a quarter-century of hot services, informing every advisory engagement.
           </p>
         </div>
 
@@ -131,7 +131,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
               className="bg-[#161514] border border-[#2a2825] p-8 space-y-4 rounded-none"
             >
               <span className="font-mono-kitchen text-[12px] tracking-[2px] text-[#c1651a] block">
-                PRINCIPLE {principle.number}
+                RULE {principle.number}
               </span>
               <h3 className="font-display text-[20px] tracking-[1.5px] uppercase text-[#f5f0e8]">
                 {principle.title}
@@ -152,7 +152,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
                 Work With Adam
               </h3>
               <p className="font-text text-[14px] text-[#9c9488] leading-relaxed mt-2">
-                Bring over 23 years experience, station rigor, and operational clarity to your culinary project.
+                Bring over 24 years experience, station rigor, and operational clarity to your culinary project.
               </p>
             </div>
             <button

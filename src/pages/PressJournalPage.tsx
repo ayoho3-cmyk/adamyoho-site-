@@ -16,7 +16,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['All', 'Essays', 'Technique', 'Press'];
+  const categories = ['All', 'Essays', 'Recipes', 'Technique', 'Press'];
 
   const filteredArticles = (articles || []).filter((art) => {
     const matchesCat = selectedCategory === 'All' || art.category === selectedCategory;
@@ -40,7 +40,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
             Press & Kitchen Journal
           </h1>
           <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
-            Essays on thermodynamic fire control, heirloom purveyors, and line leadership pulled directly from twenty-four years at the stove.
+            Essays on a high level of execution, heirloom purveyors, and line leadership pulled directly from twenty-four years at the stove.
           </p>
         </div>
       </section>

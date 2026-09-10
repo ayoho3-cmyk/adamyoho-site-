@@ -184,7 +184,7 @@ export const Footer: React.FC<FooterProps> = ({
               SEASONAL KITCHEN DISPATCHES
             </span>
             <p className="font-text text-[13px] text-[#d4cfc4]">
-              Quarterly essays on thermodynamic fire control, heirloom micro-purveyors, and recipe technique direct from the pass.
+              Quarterly essays on ingredients, techniques, recipes and insights.
             </p>
 
             {status === 'success' ? (

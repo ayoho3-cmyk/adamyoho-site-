@@ -98,8 +98,56 @@ export const ArticleDetailPage: React.FC<ArticleDetailPageProps> = ({
           </div>
         )}
 
-        {/* Recipe Ingredients & Ticket Spec (If Recipe) */}
-        {article.ingredients && article.ingredients.length > 0 && (
+        {/* Multi-Part Recipe Sections (If Recipe with multiple components) */}
+        {article.recipeSections && article.recipeSections.length > 0 && (
+          <div className="space-y-10 pt-4">
+            <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
+              COMPONENT SPECIFICATIONS & EXECUTION
+            </span>
+            {article.recipeSections.map((sec, sIdx) => (
+              <div key={sIdx} className="p-8 bg-[#131211] border border-[#2a2825] space-y-6">
+                <h3 className="font-display text-[22px] tracking-[1.5px] uppercase text-[#f5f0e8] border-b border-[#2a2825] pb-4">
+                  {sec.title}
+                </h3>
+                
+                {/* Ingredients */}
+                <div className="space-y-3">
+                  <span className="font-mono-kitchen text-[10px] tracking-[2px] text-[#c1651a] uppercase block">
+                    INGREDIENTS
+                  </span>
+                  <div className="divide-y divide-[#201e1c] font-mono-kitchen text-[12px]">
+                    {sec.ingredients.map((ing, iIdx) => (
+                      <div key={iIdx} className="py-2.5 flex items-center justify-between">
+                        <span className="text-[#f5f0e8] uppercase tracking-[1px]">{ing.item}</span>
+                        <span className="text-[#9c9488] tracking-[1px]">{ing.spec}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Method of Preparation */}
+                <div className="space-y-3 pt-2 border-t border-[#201e1c]">
+                  <span className="font-mono-kitchen text-[10px] tracking-[2px] text-[#c1651a] uppercase block">
+                    METHOD OF PREPARATION
+                  </span>
+                  <div className="space-y-2.5 font-text text-[15px] text-[#d4cfc4]">
+                    {sec.method.map((step, mIdx) => (
+                      <div key={mIdx} className="flex items-start space-x-3">
+                        <span className="font-mono-kitchen text-[11px] text-[#c1651a] mt-1 shrink-0">
+                          {mIdx + 1}.
+                        </span>
+                        <p className="leading-relaxed">{step}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Recipe Ingredients & Ticket Spec (If Single Recipe Format) */}
+        {!article.recipeSections && article.ingredients && article.ingredients.length > 0 && (
           <div className="p-8 bg-[#131211] border border-[#2a2825] space-y-6">
             <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
               MISE-EN-PLACE SPECIFICATION (KITCHEN TICKET FORMAT)
@@ -124,8 +172,8 @@ export const ArticleDetailPage: React.FC<ArticleDetailPageProps> = ({
           </div>
         )}
 
-        {/* Method Steps (If Recipe) */}
-        {article.methodSteps && article.methodSteps.length > 0 && (
+        {/* Method Steps (If Single Recipe Format) */}
+        {!article.recipeSections && article.methodSteps && article.methodSteps.length > 0 && (
           <div className="space-y-6 pt-4">
             <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
               TECHNIQUE & EXECUTION

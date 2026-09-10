@@ -37,7 +37,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({
             Testimonials & Case Endorsements
           </h1>
           <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
-            Reflections from restaurateurs, Michelin-starred culinary teams, vineyard directors, and mentees who have shared the pass with Chef Adam Yoho.
+            Reflections from restaurateurs, Michelin-starred culinary teams, estate directors, and mentees who have shared the pass with Chef Adam Yoho.
           </p>
         </div>
       </section>
@@ -106,7 +106,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({
             Begin Your Partnership With Chef Yoho
           </h3>
           <p className="font-text text-[15px] text-[#d4cfc4] max-w-lg mx-auto">
-            From comprehensive restaurant line turnarounds to bespoke vineyard tasting salons, we tailor every detail to the highest standard.
+            From comprehensive restaurant line turnarounds to bespoke tasting salons, we tailor every detail to the highest standard.
           </p>
           <div className="pt-2 flex justify-center">
             <button
