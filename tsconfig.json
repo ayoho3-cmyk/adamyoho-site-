@@ -1,25 +1,27 @@
-
-Tsconfig · JSON
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "ES2022"
-    ],
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "module": "ESNext",
-    "moduleResolution": "bundler",
-    "types": [
-      "@cloudflare/workers-types"
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
     ],
-    "strict": true,
     "skipLibCheck": true,
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "include": [
-    "./**/*.ts",
-    "../src/data/cms.ts",
-    "../src/types.ts"
-  ]
+  "exclude": ["worker", "dist", "node_modules"]
 }
