@@ -1,1 +1,24 @@
 
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": [
+      "@cloudflare/workers-types"
+    ],
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true
+  },
+  "include": [
+    "./**/*.ts",
+    "../src/data/cms.ts",
+    "../src/types.ts"
+  ]
+}
