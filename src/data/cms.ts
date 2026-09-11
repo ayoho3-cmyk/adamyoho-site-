@@ -219,7 +219,7 @@ export const INITIAL_FAQS: FAQItem[] = [
     id: 'faq-1',
     category: 'Consulting',
     question: 'What types of hospitality establishments do you consult for?',
-    answer: 'Chef Adam Yoho consults for independent fine-dining establishments, boutique hotel restaurant concepts, multi-unit luxury hospitality groups, and culinary teams preparing for Michelin or Forbes travel guide audits. Engagements range from pre-opening line architecture and menu R&D to mid-service station audits and cost-engineering optimizations.'
+    answer: 'Chef Adam Yoho consults for independent fine-dining establishments, boutique hotel restaurant concepts, multi-unit luxury hospitality groups, and culinary teams preparing to take the next steps forward. Engagements range from pre-opening line architecture and menu R&D to mid-service station audits and cost-engineering optimizations.'
   },
   {
     id: 'faq-2',
@@ -231,7 +231,7 @@ export const INITIAL_FAQS: FAQItem[] = [
     id: 'faq-3',
     category: 'Events',
     question: 'What is the guest capacity and geographical range for private dining experiences?',
-    answer: 'To preserve uncompromising culinary precision, private dining and hearth experiences are typically designed for 8 to 24 seated guests for multi-course tasting menus, or up to 60 guests for curated banquets. Chef Yoho travels domestically and internationally with his core brigade.'
+    answer: 'To preserve uncompromising culinary precision, private dining experiences are typically designed for 8 to 24 seated guests for multi-course tasting menus, or up to 60 guests for curated banquets. Chef Yoho travels domestically and internationally with his core brigade.'
   },
   {
     id: 'faq-4',
