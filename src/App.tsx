@@ -90,29 +90,6 @@ export default function App() {
     loadCmsData();
   }, []);
 
-  // Auto-sync client portrait from localStorage to permanent repository asset files
-  useEffect(() => {
-    try {
-      const savedPortrait = localStorage.getItem('chef_adam_portrait_url');
-      if (savedPortrait && savedPortrait.startsWith('data:image')) {
-        fetch('/api/upload/portrait', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ dataUrl: savedPortrait }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data?.success) {
-              console.info('[Portrait Sync] Custom chef portrait persisted to public/chef-adam-yoho-bio.jpg');
-            }
-          })
-          .catch((err) => console.warn('[Portrait Sync] Non-blocking upload deferred:', err));
-      }
-    } catch {
-      // localStorage may be restricted or unavailable
-    }
-  }, []);
-
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
