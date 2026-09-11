@@ -2,12 +2,15 @@ name = "adam-yoho-culinary"
 main = "worker/index.ts"
 compatibility_date = "2026-09-01"
 
-# adamyoho.com (apex) is already configured as a Custom Domain directly in
-# the Cloudflare dashboard (Workers & Pages > adam-yoho-culinary > Settings >
-# Domains & Routes) and is working. www.adamyoho.com is declared here so it's
-# provisioned automatically by `wrangler deploy` instead of depending on a
-# manual dashboard step that's easy to forget when the Worker gets recreated
-# or moved to a new account.
+# IMPORTANT: Wrangler treats the [[routes]] list below as the COMPLETE,
+# authoritative set of routes/custom domains for this Worker. Any domain
+# not listed here gets removed on deploy -- this is what broke the apex
+# domain (adamyoho.com) after it was originally set up manually in the
+# dashboard but never added to this file. Both domains must be declared.
+[[routes]]
+pattern = "adamyoho.com"
+custom_domain = true
+
 [[routes]]
 pattern = "www.adamyoho.com"
 custom_domain = true
@@ -35,5 +38,3 @@ APP_URL = "https://adamyoho.com"
 
 [observability]
 enabled = true
-
-
