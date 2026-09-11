@@ -289,22 +289,11 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 6. CLOSING FULL-BLEED CTA BAND */}
+      {/* 6. CLOSING CTA BAND */}
       <section
         id="cta-band-photo"
-        className="relative py-24 sm:py-32 px-6 sm:px-12 md:px-20 text-center overflow-hidden border-t border-[#2a2825]"
+        className="relative py-24 sm:py-32 px-6 sm:px-12 md:px-20 text-center overflow-hidden border-t border-[#2a2825] bg-[#121110]"
       >
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=2000&q=80"
-            alt="Evening dining table and wine service"
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center filter brightness-40 contrast-125"
-          />
-          <div className="absolute inset-0 bg-[#0d0d0c]/75" />
-        </div>
-
         <div className="relative z-10 max-w-3xl mx-auto space-y-6">
           <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
             THE PASS IS OPEN

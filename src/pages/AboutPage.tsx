@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RoutePath } from '../types';
 import { TIMELINE_EVENTS, KITCHEN_PRINCIPLES } from '../data/cms';
 import { ArrowRight, Flame, Award, BookOpen, Clock } from 'lucide-react';
 
-// Set this to your custom photo path (e.g., '/sourcing-terroir.jpg' or your image URL)
-// When set to null, this section displays cleanly with NO background photo (pure architectural theme).
-const SOURCING_TERROIR_IMAGE: string | null = null;
 interface AboutPageProps {
   onNavigate: (route: RoutePath) => void;
   onOpenCalendly: () => void;
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly }) => {
-  const [photoError, setPhotoError] = useState(false);
-  const hasValidPhoto = Boolean(SOURCING_TERROIR_IMAGE) && !photoError;
   return (
     <div id="about-page-container" className="pt-28 pb-24 text-[#f5f0e8] space-y-24 sm:space-y-32">
       
@@ -139,43 +134,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             >
               <span>DISCUSS AN ENGAGEMENT</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Sourcing & Terroir Band */}
-      <section className="relative py-24 px-6 sm:px-12 md:px-20 overflow-hidden border-y border-[#2a2825] bg-[#121110]">
-        {hasValidPhoto && (
-          <div className="absolute inset-0 z-0">
-            <img
-              src={SOURCING_TERROIR_IMAGE!}
-              alt="Terroir and purveyor sourcing"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-              onError={() => setPhotoError(true)}
-              className="w-full h-full object-cover filter brightness-30 contrast-125"
-            />
-            <div className="absolute inset-0 bg-[#0d0d0c]/70" />
-          </div>
-        )}
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
-          <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
-            TERROIR & PURVEYOR FIDELITY
-          </span>
-          <h2 className="font-display text-[30px] sm:text-[42px] tracking-[2px] uppercase text-[#f5f0e8]">
-            The Soil Before the Sauté Pan.
-          </h2>
-          <p className="font-text text-[16px] sm:text-[18px] text-[#d4cfc4] leading-relaxed">
-            We work exclusively with twenty-two family-operated farms, wild seaweed and mushroom foragers, and day-boat fishermen who share our belief that genuine culinary luxury is freshly pulled from cold earth and clean ocean tide.
-          </p>
-          <div className="pt-2 flex justify-center">
-            <button
-              onClick={() => onNavigate('press')}
-              className="btn-pill-transparent text-[12px] px-8 py-2.5"
-            >
-              READ SOURCING ESSAYS
             </button>
           </div>
         </div>

@@ -82,7 +82,7 @@ export const CMSStudioModal: React.FC<CMSStudioModalProps> = ({
       category: newCategory,
       date: 'JUST NOW',
       readTime: '4 MIN READ',
-      heroImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+      heroImage: '/kitchen-pass-hero.jpg',
       caption: 'RECENTLY PUBLISHED DISPATCH',
       excerpt: newExcerpt || 'A newly recorded reflection from the pass at Atelier Yoho.',
       body: newBody ? [newBody] : ['Service notes and seasonal observations direct from the stove.'],

@@ -102,7 +102,7 @@ export const INITIAL_ARTICLES: Article[] = [
     category: 'Essays',
     date: '03. JANUARY 2026',
     readTime: '5 MIN READ',
-    heroImage: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1600&q=80',
+    heroImage: '/kitchen-pass-hero.jpg',
     caption: 'THE PASS AT COURSE SIX: SENSORY PALATE TRANSITION',
     excerpt: 'The modern sixteen-course marathon is often a monument to the chef’s ego rather than the diner’s pleasure. Real craftsmanship is knowing what to omit.',
     body: [
@@ -120,7 +120,7 @@ export const INITIAL_ARTICLES: Article[] = [
     category: 'Technique',
     date: '19. FEBRUARY 2026',
     readTime: '7 MIN READ',
-    heroImage: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1600&q=80',
+    heroImage: '/culinary-knives-roll.jpg',
     caption: 'MORNING STATION PREP: FISH SIGHTING & KNIFE GEOMETRY',
     excerpt: 'A cook running around frantically is not cooking fast; they are hemorrhaging seconds fixing yesterday’s disorganization. Quiet hands make lightning services.',
     body: [
@@ -138,7 +138,7 @@ export const INITIAL_ARTICLES: Article[] = [
     category: 'Press',
     date: '11. AUGUST 2025',
     readTime: '4 MIN READ',
-    heroImage: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1600&q=80',
+    heroImage: '/mentorship-pans.jpg',
     caption: 'PRESS ARCHIVE: HEALDSBURG ATELIER OPENING RETROSPECTIVE',
     excerpt: 'While celebrity chefs built media empires and frozen meal lines, Chef Adam Yoho remained where he has always been: six inches from the hot line with a tasting spoon in hand.',
     body: [
@@ -266,7 +266,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     location: 'St. Helena, Napa Valley',
     format: '8-Course Live Wood Ember Tasting',
     guestCount: '16 Guests',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80',
+    image: '/bespoke-events-dinner.jpg',
     caption: 'SERVICE COMMENCING AT TWILIGHT OVER SEASONED OAK EMBERS',
     tag: 'Bespoke Banquets'
   },
@@ -286,7 +286,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     location: 'Mendocino Coastline, California',
     format: 'Open-Air Coastal Fire Table',
     guestCount: '24 Guests',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+    image: '/duck-schnitzel.jpg',
     caption: 'WHOLE DAY-BOAT ROCKFISH HUNG OVER DRIFTWOOD COALS',
     tag: 'Bespoke Banquets'
   },
@@ -296,7 +296,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     location: 'Healdsburg Studio Kitchen',
     format: 'Intimate Master Culinary Salon',
     guestCount: '8 Guests',
-    image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80',
+    image: '/kitchen-pass-hero.jpg',
     caption: 'STATION DEMONSTRATION: SAUCE REDUCTION & EMULSIFICATION',
     tag: 'Atelier'
   },
@@ -306,7 +306,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     location: 'Aspen, Colorado',
     format: '7-Course Alpine Winter Menu',
     guestCount: '20 Guests',
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=80',
+    image: '/first-steps-dish.jpg',
     caption: 'PERIGORD TRUFFLE SHAVINGS OVER SLOW-POACHED FARM EGGS',
     tag: 'Tasting Salons'
   },
@@ -316,7 +316,7 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
     location: 'Sonoma Valley, California',
     format: 'Communal Wine Country Feast',
     guestCount: '32 Guests',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+    image: '/first-steps-hero.jpg',
     caption: 'NIGHT SERVICE UNDER LANTERNS IN OLD-GROWTH ZINFANDEL BLOCK',
     tag: 'Bespoke Banquets'
   }
@@ -337,7 +337,7 @@ export const CONSULTING_CASE_STUDIES: ConsultingCaseStudy[] = [
       { label: 'Food Waste Cost', value: '-22%' },
       { label: 'Brigade Retention', value: '100%' }
     ],
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=80'
+    image: '/kitchen-pass-hero.jpg'
   },
   {
     id: 'cs-2',
@@ -353,7 +353,7 @@ export const CONSULTING_CASE_STUDIES: ConsultingCaseStudy[] = [
       { label: 'Local Sourcing Ratio', value: '94%' },
       { label: 'Average Cover Spend', value: '+38%' }
     ],
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80'
+    image: '/culinary-knives-roll.jpg'
   }
 ];
 
