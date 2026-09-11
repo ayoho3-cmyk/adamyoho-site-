@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { RoutePath } from '../types';
 import { TIMELINE_EVENTS, KITCHEN_PRINCIPLES } from '../data/cms';
 import { ArrowRight, Flame, Award, BookOpen, Clock, Camera, Upload, Check, AlertCircle, RefreshCw, Globe } from 'lucide-react';
+import chefAdamPhoto from '../assets/images/chef_adam_yoho.jpg';
 
 interface AboutPageProps {
   onNavigate: (route: RoutePath) => void;
@@ -10,7 +11,11 @@ interface AboutPageProps {
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly }) => {
   const [portraitUrl, setPortraitUrl] = useState<string>(() => {
-    return localStorage.getItem('chef_adam_portrait_url') || '/chef-adam-yoho-bio.jpg';
+    const saved = localStorage.getItem('chef_adam_portrait_url');
+    if (saved && saved.startsWith('data:image')) {
+      return saved;
+    }
+    return chefAdamPhoto;
   });
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -135,7 +140,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
 
   const handleResetDefault = () => {
     localStorage.removeItem('chef_adam_portrait_url');
-    setPortraitUrl('/chef-adam-yoho-bio.jpg');
+    setPortraitUrl(chefAdamPhoto);
     setUploadSuccess(false);
     setUploadError(null);
   };
@@ -268,7 +273,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
                   </button>
                 )}
 
-                {portraitUrl !== '/chef-adam-yoho-bio.jpg' && (
+                {portraitUrl !== chefAdamPhoto && (
                   <button
                     type="button"
                     onClick={handleResetDefault}
