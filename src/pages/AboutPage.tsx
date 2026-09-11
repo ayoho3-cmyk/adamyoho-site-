@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { RoutePath } from '../types';
 import { TIMELINE_EVENTS, KITCHEN_PRINCIPLES } from '../data/cms';
-import { ArrowRight, Flame, Award, BookOpen, Clock } from 'lucide-react';
+import { ArrowRight, Flame, Award, BookOpen, Clock, Camera, Upload, Check, AlertCircle, RefreshCw } from 'lucide-react';
 
 interface AboutPageProps {
   onNavigate: (route: RoutePath) => void;
@@ -9,9 +9,91 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly }) => {
-  const [portraitUrl] = useState<string>(() => {
+  const [portraitUrl, setPortraitUrl] = useState<string>(() => {
     return localStorage.getItem('chef_adam_portrait_url') || '/chef-adam-yoho-bio.jpg';
   });
+  const [isDragging, setIsDragging] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleProcessFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      setUploadError('Please select a valid image file (JPG, PNG, WEBP).');
+      return;
+    }
+    setUploadError(null);
+    setIsUploading(true);
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const dataUrl = e.target?.result as string;
+      if (dataUrl) {
+        setPortraitUrl(dataUrl);
+        try {
+          localStorage.setItem('chef_adam_portrait_url', dataUrl);
+        } catch (err) {
+          console.warn('LocalStorage quota exceeded or unavailable', err);
+        }
+
+        // Persist to server backend disk
+        try {
+          const res = await fetch('/api/upload/portrait', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dataUrl })
+          });
+          if (res.ok) {
+            setUploadSuccess(true);
+            setTimeout(() => setUploadSuccess(false), 4000);
+          }
+        } catch (err) {
+          console.error('Failed to sync portrait to backend', err);
+        } finally {
+          setIsUploading(false);
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleProcessFile(file);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      handleProcessFile(file);
+    }
+  };
+
+  const handleResetDefault = () => {
+    localStorage.removeItem('chef_adam_portrait_url');
+    setPortraitUrl('/chef-adam-yoho-bio.jpg');
+    setUploadSuccess(false);
+    setUploadError(null);
+  };
+
   return (
     <div id="about-page-container" className="pt-28 pb-24 text-[#f5f0e8] space-y-24 sm:space-y-32">
       
@@ -50,23 +132,110 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             </div>
           </div>
 
-          {/* Circular Chef Portrait (The single circular exception in system) */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative">
-              <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-2 border-[#2a2825] p-2 bg-[#161514] shadow-2xl">
+          {/* Circular Chef Portrait with Direct Drag-and-Drop & File Upload Support */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+
+            <div
+              className={`relative cursor-pointer group transition-all duration-300 ${
+                isDragging ? 'scale-105' : ''
+              }`}
+              onClick={() => fileInputRef.current?.click()}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              title="Click or drag & drop to upload your chef photo"
+            >
+              <div
+                className={`w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-2 p-2 bg-[#161514] shadow-2xl transition-colors duration-200 ${
+                  isDragging
+                    ? 'border-[#c1651a] shadow-[0_0_25px_rgba(193,101,26,0.4)]'
+                    : 'border-[#2a2825] group-hover:border-[#c1651a]'
+                }`}
+              >
                 <img
                   src={portraitUrl}
                   alt="Chef Adam Yoho portrait"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover rounded-full"
                 />
+
+                {/* Hover overlay with Upload/Camera Prompt */}
+                <div className="absolute inset-2 rounded-full bg-[#0d0d0c]/70 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-center p-6 space-y-2">
+                  <div className="w-12 h-12 rounded-full bg-[#c1651a] text-[#f5f0e8] flex items-center justify-center shadow-md">
+                    <Camera className="w-6 h-6" />
+                  </div>
+                  <span className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] uppercase font-medium">
+                    Upload Your Photo
+                  </span>
+                  <span className="font-text text-[11px] text-[#a8a196]">
+                    Click or drag & drop image here
+                  </span>
+                </div>
               </div>
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-[#161514] border border-[#2a2825] px-4 py-1.5 whitespace-nowrap shadow-lg">
+
+              {/* Tag below circular frame */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-[#161514] border border-[#2a2825] px-4 py-1.5 whitespace-nowrap shadow-lg flex items-center gap-2">
                 <span className="font-mono-kitchen text-[10px] tracking-[2px] text-[#9c9488]">
                   CHEF ADAM YOHO
                 </span>
               </div>
             </div>
+
+            {/* Upload Controls & Status Messages */}
+            <div className="mt-8 flex flex-col items-center space-y-2">
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={isUploading}
+                  className="font-mono-kitchen text-[10.5px] tracking-[1.5px] text-[#c1651a] hover:text-[#f5f0e8] bg-[#161514] border border-[#2a2825] hover:border-[#c1651a] px-3.5 py-1.5 flex items-center gap-1.5 transition-colors uppercase"
+                >
+                  {isUploading ? (
+                    <>
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#c1651a]" />
+                      Saving Photo...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="w-3.5 h-3.5 text-[#c1651a]" />
+                      Upload Photo
+                    </>
+                  )}
+                </button>
+
+                {portraitUrl !== '/chef-adam-yoho-bio.jpg' && (
+                  <button
+                    type="button"
+                    onClick={handleResetDefault}
+                    className="font-mono-kitchen text-[10px] tracking-[1px] text-[#6e685f] hover:text-[#9c9488] px-2 py-1 underline transition-colors"
+                  >
+                    Reset default
+                  </button>
+                )}
+              </div>
+
+              {uploadSuccess && (
+                <div className="flex items-center gap-1.5 text-emerald-400 font-mono-kitchen text-[11px] tracking-[1px]">
+                  <Check className="w-3.5 h-3.5" />
+                  <span>Photo saved & updated permanently</span>
+                </div>
+              )}
+
+              {uploadError && (
+                <div className="flex items-center gap-1.5 text-rose-400 font-mono-kitchen text-[11px]">
+                  <AlertCircle className="w-3.5 h-3.5" />
+                  <span>{uploadError}</span>
+                </div>
+              )}
+            </div>
+
           </div>
 
         </div>
