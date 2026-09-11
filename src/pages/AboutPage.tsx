@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RoutePath } from '../types';
 import { TIMELINE_EVENTS, KITCHEN_PRINCIPLES } from '../data/cms';
 import { ArrowRight, Flame, Award, BookOpen, Clock } from 'lucide-react';
 
+// Set this to your custom photo path (e.g., '/sourcing-terroir.jpg' or your image URL)
+// When set to null, this section displays cleanly with NO background photo (pure architectural theme).
+const SOURCING_TERROIR_IMAGE: string | null = null;
 interface AboutPageProps {
   onNavigate: (route: RoutePath) => void;
   onOpenCalendly: () => void;
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly }) => {
+  const [photoError, setPhotoError] = useState(false);
+  const hasValidPhoto = Boolean(SOURCING_TERROIR_IMAGE) && !photoError;
   return (
     <div id="about-page-container" className="pt-28 pb-24 text-[#f5f0e8] space-y-24 sm:space-y-32">
       
@@ -139,18 +144,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
         </div>
       </section>
 
-      {/* 4. Full-Bleed Sourcing & Terroir Band */}
-      <section className="relative py-24 px-6 sm:px-12 md:px-20 overflow-hidden border-y border-[#2a2825]">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=2000&q=80"
-            alt="Sonoma agricultural landscape"
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover filter brightness-30 contrast-125"
-          />
-          <div className="absolute inset-0 bg-[#0d0d0c]/70" />
-        </div>
+      {/* 4. Sourcing & Terroir Band */}
+      <section className="relative py-24 px-6 sm:px-12 md:px-20 overflow-hidden border-y border-[#2a2825] bg-[#121110]">
+        {hasValidPhoto && (
+          <div className="absolute inset-0 z-0">
+            <img
+              src={SOURCING_TERROIR_IMAGE!}
+              alt="Terroir and purveyor sourcing"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              onError={() => setPhotoError(true)}
+              className="w-full h-full object-cover filter brightness-30 contrast-125"
+            />
+            <div className="absolute inset-0 bg-[#0d0d0c]/70" />
+          </div>
+        )}
 
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
           <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
