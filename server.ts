@@ -170,19 +170,54 @@ app.post("/api/upload/portrait", (req, res) => {
     if (!fs.existsSync(publicDir)) {
       fs.mkdirSync(publicDir, { recursive: true });
     }
-    const publicPath = path.join(publicDir, "chef-adam-yoho-bio.jpg");
-    fs.writeFileSync(publicPath, buffer);
-    
-    // Also copy to dist if dist exists
-    const distPath = path.join(process.cwd(), "dist", "chef-adam-yoho-bio.jpg");
-    if (fs.existsSync(path.dirname(distPath))) {
-      fs.writeFileSync(distPath, buffer);
+
+    // Write to all public portrait targets
+    const publicBioPath = path.join(publicDir, "chef-adam-yoho-bio.jpg");
+    const publicPortraitPath = path.join(publicDir, "chef-adam-yoho-portrait.jpg");
+    fs.writeFileSync(publicBioPath, buffer);
+    fs.writeFileSync(publicPortraitPath, buffer);
+
+    // Also copy to src/assets/images if directory exists
+    const srcAssetsDir = path.join(process.cwd(), "src", "assets", "images");
+    if (fs.existsSync(srcAssetsDir)) {
+      fs.writeFileSync(path.join(srcAssetsDir, "chef_adam_yoho_bio_1788999469546.jpg"), buffer);
     }
-    
-    console.log("[Portrait Upload] Successfully saved chef-adam-yoho-bio.jpg (" + buffer.length + " bytes)");
-    res.json({ success: true, url: "/chef-adam-yoho-bio.jpg?t=" + Date.now() });
+
+    // Also copy to dist if dist exists
+    const distDir = path.join(process.cwd(), "dist");
+    if (fs.existsSync(distDir)) {
+      fs.writeFileSync(path.join(distDir, "chef-adam-yoho-bio.jpg"), buffer);
+      fs.writeFileSync(path.join(distDir, "chef-adam-yoho-portrait.jpg"), buffer);
+    }
+
+    console.log("[Portrait Upload] Successfully saved permanent chef portrait to disk (" + buffer.length + " bytes)");
+    res.json({
+      success: true,
+      bytes: buffer.length,
+      timestamp: Date.now(),
+      url: "/chef-adam-yoho-bio.jpg?t=" + Date.now(),
+      message: "Portrait successfully written to public/chef-adam-yoho-bio.jpg for live production."
+    });
   } catch (err: any) {
     console.error("[Portrait Upload Error]", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/api/upload/portrait/status", (req, res) => {
+  try {
+    const bioPath = path.join(process.cwd(), "public", "chef-adam-yoho-bio.jpg");
+    if (fs.existsSync(bioPath)) {
+      const stats = fs.statSync(bioPath);
+      res.json({
+        exists: true,
+        size: stats.size,
+        modified: stats.mtime.toISOString(),
+      });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
 });

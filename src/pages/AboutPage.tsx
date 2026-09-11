@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { RoutePath } from '../types';
 import { TIMELINE_EVENTS, KITCHEN_PRINCIPLES } from '../data/cms';
-import { ArrowRight, Flame, Award, BookOpen, Clock, Camera, Upload, Check, AlertCircle, RefreshCw } from 'lucide-react';
+import { ArrowRight, Flame, Award, BookOpen, Clock, Camera, Upload, Check, AlertCircle, RefreshCw, Globe } from 'lucide-react';
 
 interface AboutPageProps {
   onNavigate: (route: RoutePath) => void;
@@ -17,6 +17,52 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-sync custom portrait on component mount to ensure server disk is updated
+  useEffect(() => {
+    const saved = localStorage.getItem('chef_adam_portrait_url');
+    if (saved && saved.startsWith('data:image')) {
+      fetch('/api/upload/portrait', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dataUrl: saved })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data?.success) {
+            setUploadSuccess(true);
+            setTimeout(() => setUploadSuccess(false), 5000);
+          }
+        })
+        .catch(err => console.warn('Auto-sync portrait to disk deferred:', err));
+    }
+  }, []);
+
+  const handleManualSync = async () => {
+    if (!portraitUrl || !portraitUrl.startsWith('data:image')) {
+      setUploadError('Please select or upload a photo first.');
+      return;
+    }
+    setIsUploading(true);
+    setUploadError(null);
+    try {
+      const res = await fetch('/api/upload/portrait', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dataUrl: portraitUrl })
+      });
+      if (res.ok) {
+        setUploadSuccess(true);
+        setTimeout(() => setUploadSuccess(false), 5000);
+      } else {
+        setUploadError('Could not sync to repository disk.');
+      }
+    } catch {
+      setUploadError('Network error while syncing to server.');
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const handleProcessFile = (file: File) => {
     if (!file.type.startsWith('image/')) {
@@ -189,8 +235,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             </div>
 
             {/* Upload Controls & Status Messages */}
-            <div className="mt-8 flex flex-col items-center space-y-2">
-              <div className="flex items-center gap-3">
+            <div className="mt-8 flex flex-col items-center space-y-2.5 max-w-sm text-center">
+              <div className="flex flex-wrap items-center justify-center gap-2.5">
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
@@ -200,7 +246,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
                   {isUploading ? (
                     <>
                       <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#c1651a]" />
-                      Saving Photo...
+                      Processing...
                     </>
                   ) : (
                     <>
@@ -209,6 +255,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
                     </>
                   )}
                 </button>
+
+                {portraitUrl.startsWith('data:image') && (
+                  <button
+                    type="button"
+                    onClick={handleManualSync}
+                    disabled={isUploading}
+                    className="font-mono-kitchen text-[10.5px] tracking-[1.5px] text-emerald-400 hover:text-[#f5f0e8] bg-[#161514] border border-[#2a2825] hover:border-emerald-500 px-3.5 py-1.5 flex items-center gap-1.5 transition-colors uppercase"
+                  >
+                    <Globe className="w-3.5 h-3.5 text-emerald-400" />
+                    Save for Live Site
+                  </button>
+                )}
 
                 {portraitUrl !== '/chef-adam-yoho-bio.jpg' && (
                   <button
@@ -222,18 +280,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
               </div>
 
               {uploadSuccess && (
-                <div className="flex items-center gap-1.5 text-emerald-400 font-mono-kitchen text-[11px] tracking-[1px]">
-                  <Check className="w-3.5 h-3.5" />
-                  <span>Photo saved & updated permanently</span>
+                <div className="flex items-center gap-1.5 text-emerald-400 font-mono-kitchen text-[11px] tracking-[0.5px] bg-[#161514] border border-emerald-900/50 px-3 py-1.5 rounded">
+                  <Check className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>Photo saved to repository assets for live site deploy</span>
                 </div>
               )}
 
               {uploadError && (
-                <div className="flex items-center gap-1.5 text-rose-400 font-mono-kitchen text-[11px]">
-                  <AlertCircle className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 text-rose-400 font-mono-kitchen text-[11px] bg-[#161514] border border-rose-900/50 px-3 py-1.5 rounded">
+                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
                   <span>{uploadError}</span>
                 </div>
               )}
+
+              <p className="font-mono-kitchen text-[9.5px] tracking-[0.5px] text-[#6e685f] leading-relaxed">
+                Photos uploaded here are stored in <code className="text-[#9c9488]">public/chef-adam-yoho-bio.jpg</code> so your live domain (<code className="text-[#9c9488]">adamyoho.com</code>) serves your real photo instead of stock images.
+              </p>
             </div>
 
           </div>
