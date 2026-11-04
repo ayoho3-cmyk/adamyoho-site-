@@ -25,7 +25,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
           Twenty four years at the pass, began at The Food Studio in Atlanta and has spanned from the Texas Hill Country to Columbus, Ohio; from Pittsburgh to Austin.
         </p>
         <p className="font-text text-[16px] sm:text-[17px] text-[#d4cfc4] leading-relaxed max-w-2xl mx-auto">
-          Over the course of 24 years, has led teams from pizza shops to high end steakhouse, taquerias to bistros, and been part of 8 openings including owning Uptown 51. He has developed an approach defined by passionate ingredient sourcing, calm, concentrated service, and classic technique.
+          Over the course of 24 years, has led teams from pizza shops to high end steakhouse, taquerias to bistros, and spearheaded 8 openings including owning Uptown 51. He has developed an approach defined by passionate ingredient sourcing, calm, concentrated service, and classic technique.
         </p>
         <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
           <button
@@ -33,7 +33,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             onClick={onOpenCalendly}
             className="btn-pill-transparent text-[12px] px-8 py-2.5"
           >
-            SCHEDULE ADVISORY CALL
+            REQUEST ADVISORY CALL
           </button>
           <button
             id="about-inquire-btn"
@@ -93,7 +93,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             Rules of the Kitchen
           </h2>
           <p className="font-text text-[16px] text-[#9c9488]">
-            Standards cultivated across a quarter-century of hot services, informing every advisory engagement.
+            Standards cultivated across twenty-four years of hot services, informing every advisory engagement.
           </p>
         </div>
 

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { RoutePath, Testimonial } from '../types';
+import { RoutePath } from '../types';
 import { Calendar } from 'lucide-react';
 import { ScheduleEmbed } from '../components/ScheduleEmbed';
 
 interface ConsultingPageProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
-  testimonials?: Testimonial[];
   onOpenCalendly: () => void;
 }
 
@@ -42,25 +41,21 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
     {
       step: 'STAGE 1',
       title: 'Line Diagnostic & Cover Audit',
-      timeline: 'Weeks 1–2',
       desc: 'Chef Yoho observes multiple live services on the hot line, auditing station bottlenecking, ticket cadence, plating consistency, and waste streams.'
     },
     {
       step: 'STAGE 2',
       title: 'Menu R&D & Station Re-Engineering',
-      timeline: 'Weeks 3–6',
-      desc: 'Developing and test-firing opening menus or seasonal revamps. Streamlining station layouts and building the kitchen’s master recipe and technique documentation.'
+      desc: 'Developing and test-firing opening menus or seasonal revamps. Streamlining station layouts and building the kitchen’s recipe and technique documentation.'
     },
     {
       step: 'STAGE 3',
       title: 'Brigade Immersion & Dry-Run Services',
-      timeline: 'Weeks 7–10',
       desc: 'Hands-on station coaching with line cooks, sous chefs, and expediter pass leads. Running simulated service marathons under heavy cover pressures.'
     },
     {
       step: 'STAGE 4',
       title: 'Launch Pass Oversight & Retention Audits',
-      timeline: 'Weeks 11–16',
       desc: 'Standing shoulder-to-shoulder with the brigade during opening or relaunch weeks, followed by 30-day and 90-day quality and margin checks.'
     }
   ];
@@ -79,7 +74,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
               Culinary Consulting & Kitchen Architecture
             </h1>
             <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
-              Translating over 23 years experience into efficient line operations, disciplined menu development, and sustainable restaurant profitability.
+              Translating over 24 years experience into efficient line operations, disciplined menu development, and sustainable restaurant profitability.
             </p>
             <div className="pt-4 flex flex-wrap gap-4 items-center">
               <button
@@ -94,7 +89,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
                 onClick={onOpenCalendly}
                 className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
               >
-                BOOK 20-MIN SCOPING CALL
+                REQUEST 20-MIN SCOPING CALL
               </button>
             </div>
           </div>
@@ -163,9 +158,6 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
                   <span className="font-mono-kitchen text-[11px] tracking-[2px] text-[#c1651a]">
                     {step.step}
                   </span>
-                  <span className="font-mono-kitchen text-[10px] text-[#9c9488]">
-                    {step.timeline}
-                  </span>
                 </div>
                 <h4 className="font-display text-[18px] tracking-[1px] uppercase text-[#f5f0e8]">
                   {step.title}
@@ -189,7 +181,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
             Begin Your Consulting Diagnostic
           </h3>
           <p className="font-text text-[16px] text-[#d4cfc4] max-w-xl mx-auto">
-            Submit your establishment details through our branching intake form or book a direct 20-minute scoping call.
+            Submit your establishment details through our branching intake form or request a 20-minute scoping call.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
@@ -205,7 +197,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
               className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] hover:text-[#c1651a] border border-[#423e38] px-6 py-3 transition-colors flex items-center space-x-2"
             >
               <Calendar className="w-3.5 h-3.5 text-[#c1651a]" />
-              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'BOOK 20-MIN INTRO CALL DIRECTLY'}</span>
+              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'REQUEST 20-MIN INTRO CALL'}</span>
             </button>
           </div>
         </div>
@@ -215,9 +207,9 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
           <div className="animate-fadeIn">
             <ScheduleEmbed
               serviceBranch="consulting"
-              title="Book Culinary Advisory Scoping Call"
-              subtitle="Reserve a 20-minute video diagnostic with Chef Adam Yoho to evaluate line redesign, tasting menu engineering, or cost control audits."
-              defaultTopic="Culinary Advisory & Kitchen Line Scoping"
+              title="Request a Consulting Scoping Call"
+              subtitle="Tell Chef Adam Yoho about your kitchen and when you are free. He will email you to confirm a time for a 20-minute call."
+              topicPlaceholder="e.g. Line redesign, menu development, or a cost audit"
             />
           </div>
         )}

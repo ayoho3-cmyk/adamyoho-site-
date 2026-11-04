@@ -1,5 +1,5 @@
 import React from 'react';
-import { RoutePath, Article, Testimonial } from '../types';
+import { RoutePath, Article } from '../types';
 import { ArrowRight } from 'lucide-react';
 import kitchenPassHero from '../assets/images/kitchen_pass_hero.jpg';
 import bespokeEventsDinner from '../assets/images/bespoke_events_dinner.jpg';
@@ -8,8 +8,6 @@ interface HomePageProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
   articles?: Article[];
   featuredArticles?: Article[];
-  testimonials?: Testimonial[];
-  featuredTestimonial?: Testimonial;
   onOpenCalendly?: () => void;
   onSelectArticle: (article: Article) => void;
 }
@@ -39,7 +37,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div className="absolute inset-0 z-0">
           <img
             src={kitchenPassHero}
-            alt="Chef Adam Yoho kitchen line and hearth pass with suspended shelving and warm Edison filament lighting"
+            alt="Chef Adam Yoho kitchen line and pass with suspended shelving and warm Edison filament lighting"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center filter brightness-60 contrast-115 transition-transform duration-1000 scale-105"
           />
@@ -61,7 +59,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </h1>
 
           <p className="font-text text-[16px] sm:text-[20px] text-[#d4cfc4] max-w-2xl mx-auto leading-relaxed">
-            Culinary consulting for hospitality groups, bespoke private dining experiences, and master mentorship for the next generation of chefs.
+            Culinary consulting for hospitality groups, bespoke private dining experiences, and chef mentorship for the next generation of chefs.
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -92,7 +90,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           RULES OF THE KITCHEN
         </span>
         <blockquote className="font-display text-[24px] sm:text-[34px] md:text-[40px] tracking-[2px] uppercase text-[#f5f0e8] leading-[1.25]">
-          “Over 23 years behind the line teaches you one enduring truth: you do not force greatness, its achieved through patience, resilience, dedicated technique, and well oiled teamwork.”
+          “Over 24 years behind the line teaches you one enduring truth: you do not force greatness, its achieved through patience, resilience, dedicated technique, and well oiled teamwork.”
         </blockquote>
         <div className="w-12 h-[1px] bg-[#c1651a] mx-auto" />
         <p className="font-text text-[16px] sm:text-[18px] text-[#d4cfc4] leading-relaxed max-w-2xl mx-auto">
@@ -211,7 +209,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 />
               </div>
               <span className="font-mono-kitchen text-[10px] tracking-[2px] text-[#c1651a] block">
-                03 · MASTER LINE COACHING
+                03 · LINE COACHING
               </span>
               <h3 className="font-display text-[24px] tracking-[1.5px] uppercase text-[#f5f0e8]">
                 Chef Mentorship
@@ -317,7 +315,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               onClick={onOpenCalendly}
               className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
             >
-              BOOK 20-MIN INTRO CALL
+              REQUEST 20-MIN INTRO CALL
             </button>
           </div>
         </div>

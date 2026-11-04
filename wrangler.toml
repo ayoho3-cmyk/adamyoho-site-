@@ -28,8 +28,17 @@ binding = "ASSETS"
 # fall back to index.html rather than 404ing.
 not_found_handling = "single-page-application"
 
+# Sends inquiry alerts through Cloudflare Email Routing.
+[[send_email]]
+name = "ALERT_EMAIL"
+
 [vars]
 APP_URL = "https://adamyoho.com"
+
+# Required secrets, set with `wrangler secret put <NAME>`:
+# INQUIRY_ALERT_TO - where alerts go; must be a verified Email Routing address
+# ADMIN_API_TOKEN  - unlocks the inquiry and analytics read endpoints
+# Optional: SLACK_INQUIRY_WEBHOOK_URL
 
 # Uncomment and set via `wrangler secret put` (not in this file) if/when
 # newsletter signups should forward to an email marketing provider:

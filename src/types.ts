@@ -6,7 +6,6 @@ export type RoutePath =
   | 'mentorship'
   | 'press'
   | 'press-detail'
-  | 'testimonials'
   | 'faq'
   | 'contact';
 
@@ -22,7 +21,7 @@ export interface Article {
   slug: string;
   title: string;
   subtitle?: string;
-  category: 'Essays' | 'Recipes' | 'Technique' | 'Press';
+  category: 'Essays' | 'Recipes';
   date: string;
   readTime: string;
   heroImage: string;
@@ -37,47 +36,11 @@ export interface Article {
   featured?: boolean;
 }
 
-export interface Testimonial {
-  id: string;
-  author: string;
-  title: string;
-  establishmentOrContext: string;
-  serviceType: ServiceBranch;
-  quote: string;
-  year: string;
-  featured?: boolean;
-  avatar?: string;
-}
-
 export interface FAQItem {
   id: string;
   category: 'General' | 'Consulting' | 'Events' | 'Mentorship' | 'Sourcing & Dietary';
   question: string;
   answer: string;
-}
-
-export interface EventGalleryItem {
-  id: string;
-  title: string;
-  location: string;
-  format: string;
-  guestCount: string;
-  image: string;
-  caption: string;
-  tag: 'Private Dining' | 'Bespoke Banquets' | 'Tasting Salons' | 'Atelier';
-}
-
-export interface ConsultingCaseStudy {
-  id: string;
-  title: string;
-  client: string;
-  location: string;
-  duration: string;
-  challenge: string;
-  solution: string;
-  outcome: string;
-  metrics: { label: string; value: string }[];
-  image: string;
 }
 
 export interface InquirySubmission {

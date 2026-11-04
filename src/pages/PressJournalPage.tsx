@@ -16,7 +16,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['All', 'Essays', 'Recipes', 'Technique', 'Press'];
+  const categories = ['All', 'Essays', 'Recipes'];
 
   const filteredArticles = (articles || []).filter((art) => {
     const matchesCat = selectedCategory === 'All' || art.category === selectedCategory;
@@ -34,10 +34,10 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
       <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20">
         <div className="max-w-4xl space-y-6">
           <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
-            THE ATELIER DISPATCHES · 1999–2026
+            THE ATELIER DISPATCHES · 2002–2026
           </span>
           <h1 className="font-display text-[36px] sm:text-[54px] md:text-[64px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
-            Press & Kitchen Journal
+            Kitchen Journal
           </h1>
           <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
             Essays on a high level of execution, heirloom purveyors, and line leadership pulled directly from twenty-four years at the stove.

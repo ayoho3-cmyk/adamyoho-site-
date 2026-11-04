@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { RoutePath, Testimonial } from '../types';
+import { RoutePath } from '../types';
 import { Calendar } from 'lucide-react';
 import { ScheduleEmbed } from '../components/ScheduleEmbed';
 
 interface MentorshipPageProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
-  testimonials?: Testimonial[];
   onOpenCalendly: () => void;
 }
 
@@ -55,10 +54,10 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-7 space-y-6">
             <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
-              PRACTICE AREA 03 · LINE MASTERY
+              PRACTICE AREA 03 · LINE COACHING
             </span>
             <h1 className="font-display text-[36px] sm:text-[52px] md:text-[60px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
-              Master Culinary Mentorship & Stage Coaching
+              Culinary Mentorship & Stage Coaching
             </h1>
             <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
               Direct, intensive coaching for working sous chefs, chef de parties, and culinary leaders preparing to take command of their own kitchen pass.
@@ -76,7 +75,7 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
                 onClick={onOpenCalendly}
                 className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
               >
-                SCHEDULE 20-MIN INTERVIEW
+                REQUEST 20-MIN INTERVIEW
               </button>
             </div>
           </div>
@@ -108,7 +107,7 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
         </p>
       </section>
 
-      {/* 3. The 3 Stages of Mastery */}
+      {/* 3. The 3 Stages */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20 border-t border-[#1c1a18] pt-20">
         <div className="space-y-4 mb-16 max-w-3xl">
           <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">
@@ -172,7 +171,7 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
               className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] hover:text-[#c1651a] border border-[#423e38] px-6 py-3 transition-colors flex items-center space-x-2"
             >
               <Calendar className="w-3.5 h-3.5 text-[#c1651a]" />
-              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'BOOK 20-MIN INTERVIEW DIRECTLY'}</span>
+              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'REQUEST 20-MIN INTERVIEW'}</span>
             </button>
           </div>
         </div>
@@ -182,9 +181,9 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
           <div className="animate-fadeIn">
             <ScheduleEmbed
               serviceBranch="mentorship"
-              title="Book Mentorship Intake Interview"
-              subtitle="Lock a 20-minute 1-on-1 video scoping conversation directly on Chef Adam Yoho's calendar."
-              defaultTopic="Chef Mentorship & Brigade Line Coaching"
+              title="Request a Mentorship Interview"
+              subtitle="Tell Chef Adam Yoho about your experience and when you are free. He will email you to confirm a time for a 20-minute call."
+              topicPlaceholder="e.g. Preparing to step up from sous chef"
             />
           </div>
         )}
