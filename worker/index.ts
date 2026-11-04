@@ -1,8 +1,6 @@
 import {
   INITIAL_ARTICLES,
   INITIAL_FAQS,
-  INITIAL_EVENT_GALLERY,
-  CONSULTING_CASE_STUDIES,
 } from "../src/data/cms";
 import { EmailMessage } from "cloudflare:email";
 
@@ -19,12 +17,11 @@ export interface Env {
 }
 
 // --- Static CMS content ---
-// Articles/faqs/gallery/case-studies are read-only seed data.
+// Articles and FAQs are read-only seed data.
 // If an editor is ever added, move them into D1 and put the write routes
 // behind requireAdmin, like the inquiry and analytics reads below.
 const articlesList = [...INITIAL_ARTICLES];
 const faqsList = [...INITIAL_FAQS];
-const galleryList = [...INITIAL_EVENT_GALLERY];
 
 interface Inquiry {
   id: string;
@@ -589,15 +586,6 @@ export default {
         return json({ article, related });
       }
 
-      if (url.pathname === "/api/cms/gallery") {
-        const tag = url.searchParams.get("tag");
-        let result = [...galleryList];
-        if (tag && tag !== "All") {
-          result = result.filter((g) => g.tag === tag);
-        }
-        return json({ gallery: result, total: result.length });
-      }
-
       if (url.pathname === "/api/cms/faqs") {
         const category = url.searchParams.get("category");
         const search = url.searchParams.get("search");
@@ -615,10 +603,6 @@ export default {
           );
         }
         return json({ faqs: result, total: result.length });
-      }
-
-      if (url.pathname === "/api/cms/case-studies") {
-        return json({ caseStudies: CONSULTING_CASE_STUDIES });
       }
 
       if (url.pathname === "/api/analytics/track" && request.method === "POST") {

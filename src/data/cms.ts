@@ -1,4 +1,4 @@
-import { Article, FAQItem, EventGalleryItem, ConsultingCaseStudy } from '../types';
+import { Article, FAQItem } from '../types';
 
 export const INITIAL_ARTICLES: Article[] = [
   {
@@ -23,7 +23,7 @@ export const INITIAL_ARTICLES: Article[] = [
   {
     slug: 'duck-schnitzel-brandied-cherries-rotkohl-spatzle',
     title: 'Duck Schnitzel with Brandied Cherries, Rotkohl & Spätzle',
-    subtitle: 'A study in crisp poultry execution, sweet-tart fruit maceration, and classic hearthside winter garnishes.',
+    subtitle: 'A study in crisp poultry execution, sweet-tart fruit maceration, and classic winter garnishes.',
     category: 'Recipes',
     date: '16. JANUARY 2023',
     readTime: '6 MIN READ',
@@ -108,7 +108,7 @@ export const INITIAL_ARTICLES: Article[] = [
     body: [
       'In the mid-2000s, fine dining fell victim to an arms race of quantity masquerading as luxury. Menus stretched to twenty-four bites, each accompanied by an oral lecture from a front-of-house captain while the butter melted and the foam collapsed.',
       'By course fourteen, human palate fatigue is a biological reality. The receptor cells on the tongue are dulled by salt, lipid, and acidity. What the guest experiences in the third hour is not wonder—it is endurance.',
-      'In my consulting work across fine-dining dining rooms, the first intervention is almost always subtraction: strip the sequence down to eight pristine, mathematically paced movements. Send the guest into the evening feeling illuminated, buoyant, and longing for one more bite.'
+      'The first intervention is almost always subtraction: strip the sequence down to eight pristine, mathematically paced movements. Send the guest into the evening feeling illuminated, buoyant, and longing for one more bite.'
     ],
     chefNotes: 'Pacing between courses must never exceed twelve minutes, nor should it rush below seven. The tempo of the dining room is as musical as a score.',
     featured: false
@@ -150,7 +150,7 @@ export const INITIAL_FAQS: FAQItem[] = [
     id: 'faq-3',
     category: 'Events',
     question: 'What is the guest capacity and geographical range for private dining experiences?',
-    answer: 'To preserve uncompromising culinary precision, private dining experiences are typically designed for 8 to 24 seated guests for multi-course tasting menus, or up to 60 guests for curated banquets. Chef Yoho travels domestically and internationally with his core brigade.'
+    answer: 'To preserve uncompromising culinary precision, private dining experiences are typically designed for 8 to 24 seated guests for multi-course tasting menus, or up to 60 guests for curated banquets. Chef Yoho serves the Texas Hill Country, Austin, Pittsburgh, and Columbus, and can discuss travel beyond those areas.'
   },
   {
     id: 'faq-4',
@@ -175,88 +175,6 @@ export const INITIAL_FAQS: FAQItem[] = [
     category: 'General',
     question: 'How far in advance should we initiate an inquiry?',
     answer: 'For consulting pre-openings and seasonal private dining bookings, we recommend reaching out 60 to 120 days in advance. Mentorship applications are reviewed at the start of each calendar quarter.'
-  }
-];
-
-export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
-  {
-    id: 'g-1',
-    title: 'The Autumn Estate Hearth Dinner',
-    location: 'St. Helena, Napa Valley',
-    format: '8-Course Live Wood Ember Tasting',
-    guestCount: '16 Guests',
-    image: '/bespoke-events-dinner.jpg',
-    caption: 'SERVICE COMMENCING AT TWILIGHT OVER SEASONED OAK EMBERS',
-    tag: 'Bespoke Banquets'
-  },
-  {
-    id: 'g-2',
-    title: 'Private Estate Salon & Cellar Pairing',
-    location: 'Carmel-by-the-Sea, California',
-    format: '10-Course Bespoke Tasting Menu',
-    guestCount: '10 Guests',
-    image: '/bespoke-events-dinner.jpg',
-    caption: 'PLATING THE AGED DUCK BREAST AND ROASTED CHANTERELLES',
-    tag: 'Private Dining'
-  },
-  {
-    id: 'g-3',
-    title: 'The Forager & Fisherman Summer Solstice',
-    location: 'Mendocino Coastline, California',
-    format: 'Open-Air Coastal Fire Table',
-    guestCount: '24 Guests',
-    image: '/duck-schnitzel.jpg',
-    caption: 'WHOLE DAY-BOAT ROCKFISH HUNG OVER DRIFTWOOD COALS',
-    tag: 'Bespoke Banquets'
-  },
-  {
-    id: 'g-4',
-    title: 'Atelier Yoho Masterclass & Chef’s Table',
-    location: 'Healdsburg Studio Kitchen',
-    format: 'Intimate Master Culinary Salon',
-    guestCount: '8 Guests',
-    image: '/kitchen-pass-hero.jpg',
-    caption: 'STATION DEMONSTRATION: SAUCE REDUCTION & EMULSIFICATION',
-    tag: 'Atelier'
-  },
-  {
-    id: 'g-5',
-    title: 'Winter Solstice Black Truffle Banquet',
-    location: 'Aspen, Colorado',
-    format: '7-Course Alpine Winter Menu',
-    guestCount: '20 Guests',
-    image: '/first-steps-dish.jpg',
-    caption: 'PERIGORD TRUFFLE SHAVINGS OVER SLOW-POACHED FARM EGGS',
-    tag: 'Tasting Salons'
-  },
-  {
-    id: 'g-6',
-    title: 'The Harvest Table under Old Vines',
-    location: 'Sonoma Valley, California',
-    format: 'Communal Wine Country Feast',
-    guestCount: '32 Guests',
-    image: '/first-steps-hero.jpg',
-    caption: 'NIGHT SERVICE UNDER LANTERNS IN OLD-GROWTH ZINFANDEL BLOCK',
-    tag: 'Bespoke Banquets'
-  }
-];
-
-export const CONSULTING_CASE_STUDIES: ConsultingCaseStudy[] = [
-  {
-    id: 'cs-2',
-    title: 'Boutique Estate Hotel Culinary Direction & Launch',
-    client: 'Estate 1886 Hotel & Kitchen',
-    location: 'Healdsburg, CA',
-    duration: '24 Weeks',
-    challenge: 'A newly renovated 45-room wine country estate required a unified culinary identity spanning breakfast, pool terrace dining, and an ambitious 40-seat hearth tasting room without inflating kitchen labor costs.',
-    solution: 'Engineered a cross-utilized whole-animal butchery program, built direct micro-purveyor contracts with eight Sonoma family farms, trained incoming brigade leadership, and created the opening signature hearth menu.',
-    outcome: 'Achieved full profitability within month three of operation, named "Top 10 New Hotel Restaurants in North America" by Conde Nast Traveler.',
-    metrics: [
-      { label: 'Opening Profitability', value: 'Month 3' },
-      { label: 'Local Sourcing Ratio', value: '94%' },
-      { label: 'Average Cover Spend', value: '+38%' }
-    ],
-    image: '/culinary-knives-roll.jpg'
   }
 ];
 

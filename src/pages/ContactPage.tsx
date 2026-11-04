@@ -33,12 +33,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   const [consultingBudget, setConsultingBudget] = useState('$25,000 – $50,000');
 
   // Branch 2: Events fields
-  const [eventFormat, setEventFormat] = useState('Live Wood Hearth Chef’s Table (8–14 Guests)');
+  const [eventFormat, setEventFormat] = useState('Chef’s Table (8–14 Guests)');
   const [eventDate, setEventDate] = useState('');
   const [eventGuestCount, setEventGuestCount] = useState('12');
   const [eventLocation, setEventLocation] = useState('');
   const [eventDietaryNotes, setEventDietaryNotes] = useState('');
-  const [eventWineCellar, setEventWineCellar] = useState('Estate / Private Cellar Pairing');
 
   // Branch 3: Mentorship fields
   const [mentorshipCurrentRole, setMentorshipCurrentRole] = useState('Sous Chef / Junior Sous');
@@ -122,7 +121,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({
         targetDate: eventDate || 'Flexible / In Discussion',
         guestCount: eventGuestCount,
         location: eventLocation,
-        winePairing: eventWineCellar,
         dietaryNotes: eventDietaryNotes
       };
     } else if (selectedBranch === 'mentorship') {
@@ -316,7 +314,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. Marcus Vance"
+                      placeholder="e.g. Jordan Smith"
                       className="input-underline"
                     />
                     {errors.name && (
@@ -333,7 +331,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="e.g. marcus@hospitalitygroup.com"
+                      placeholder="e.g. jordan@yourrestaurant.com"
                       className="input-underline"
                     />
                     {errors.email && (
@@ -351,7 +349,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+1 (415) 000-0000"
+                    placeholder="+1 (512) 000-0000"
                     className="input-underline"
                   />
                 </div>
@@ -373,7 +371,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         type="text"
                         value={consultingEstablishment}
                         onChange={(e) => setConsultingEstablishment(e.target.value)}
-                        placeholder="e.g. The Mercer Dining Room"
+                        placeholder="e.g. Your restaurant or hotel"
                         className="input-underline"
                       />
                       {errors.consultingEstablishment && (
@@ -389,7 +387,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         type="text"
                         value={consultingLocation}
                         onChange={(e) => setConsultingLocation(e.target.value)}
-                        placeholder="e.g. Healdsburg, CA"
+                        placeholder="e.g. Austin, TX"
                         className="input-underline"
                       />
                     </div>
@@ -496,9 +494,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                       onChange={(e) => setEventFormat(e.target.value)}
                       className="w-full bg-[#0d0d0c] border border-[#423e38] text-[#f5f0e8] p-2.5 text-xs font-mono-kitchen"
                     >
-                      <option value="Live Wood Hearth Chef’s Table (8–14 Guests)">Live Wood Hearth Chef’s Table (8–14 Guests)</option>
-                      <option value="Estate Terroir Banquet (16–60 Guests)">Estate Terroir Banquet (16–60 Guests)</option>
-                      <option value="Private Estate Tasting Salon (6–20 Guests)">Private Estate Tasting Salon (6–20 Guests)</option>
+                      <option value="Chef’s Table (8–14 Guests)">Chef’s Table (8–14 Guests)</option>
+                      <option value="Multi-Course Dinner (8–24 Guests)">Multi-Course Dinner (8–24 Guests)</option>
+                      <option value="Banquet (Up to 60 Guests)">Banquet (Up to 60 Guests)</option>
                       <option value="Custom Culinary Commission">Custom Culinary Commission</option>
                     </select>
                   </div>
@@ -537,7 +535,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         type="text"
                         value={eventLocation}
                         onChange={(e) => setEventLocation(e.target.value)}
-                        placeholder="e.g. Napa Valley Estate"
+                        placeholder="e.g. Austin, TX"
                         className="input-underline text-xs"
                       />
                       {errors.eventLocation && (
@@ -593,7 +591,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         type="text"
                         value={mentorshipKitchen}
                         onChange={(e) => setMentorshipKitchen(e.target.value)}
-                        placeholder="e.g. Atelier Crenn / San Francisco"
+                        placeholder="e.g. Your current kitchen and city"
                         className="input-underline"
                       />
                       {errors.mentorshipKitchen && (

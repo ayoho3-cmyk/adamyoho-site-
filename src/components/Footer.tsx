@@ -67,7 +67,7 @@ export const Footer: React.FC<FooterProps> = ({
               ADAM YOHO
             </span>
             <p className="font-text text-[14px] text-[#d4cfc4] leading-relaxed max-w-sm">
-              Over 23 years at the stove. Advising hospitality groups, executing bespoke private dining experiences, and mentoring the next generation of culinary leaders across Texas Hill Country, Austin, Pittsburgh, Columbus, and beyond.
+              Over 24 years at the stove. Advising hospitality groups, executing bespoke private dining experiences, and mentoring the next generation of culinary leaders across Texas Hill Country, Austin, Pittsburgh, Columbus, and beyond.
             </p>
             <div className="pt-2 flex items-center space-x-4">
               <button

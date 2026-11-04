@@ -78,7 +78,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
               Culinary Consulting & Kitchen Architecture
             </h1>
             <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
-              Translating over 23 years experience into efficient line operations, disciplined menu development, and sustainable restaurant profitability.
+              Translating over 24 years experience into efficient line operations, disciplined menu development, and sustainable restaurant profitability.
             </p>
             <div className="pt-4 flex flex-wrap gap-4 items-center">
               <button

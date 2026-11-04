@@ -34,7 +34,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
       <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20">
         <div className="max-w-4xl space-y-6">
           <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
-            THE ATELIER DISPATCHES · 1999–2026
+            THE ATELIER DISPATCHES · 2002–2026
           </span>
           <h1 className="font-display text-[36px] sm:text-[54px] md:text-[64px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
             Kitchen Journal

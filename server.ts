@@ -1,13 +1,11 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { INITIAL_ARTICLES, INITIAL_FAQS, INITIAL_EVENT_GALLERY, CONSULTING_CASE_STUDIES } from "./src/data/cms";
+import { INITIAL_ARTICLES, INITIAL_FAQS } from "./src/data/cms";
 import { 
   sanityClient, 
   ARTICLES_QUERY, 
   ARTICLE_BY_SLUG_QUERY, 
-  CASE_STUDIES_QUERY,
-  EVENT_GALLERY_QUERY,
   FAQS_QUERY
 } from "./src/lib/sanity";
 
@@ -20,7 +18,6 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 // In-memory persistent data store (Headless / Git-based CMS & intake records)
 let articlesList = [...INITIAL_ARTICLES];
 let faqsList = [...INITIAL_FAQS];
-let galleryList = [...INITIAL_EVENT_GALLERY];
 
 interface Inquiry {
   id: string;
@@ -370,26 +367,6 @@ app.post("/api/cms/articles", (req, res) => {
   res.status(201).json({ success: true, article: newArt });
 });
 
-// Event Gallery API
-app.get("/api/cms/gallery", async (req, res) => {
-  const { tag } = req.query;
-  let result = [...galleryList];
-
-  try {
-    const sanityGallery = await sanityClient.fetch(EVENT_GALLERY_QUERY);
-    if (sanityGallery && sanityGallery.length > 0) {
-      result = sanityGallery;
-    }
-  } catch (err) {
-    // Fallback
-  }
-
-  if (tag && tag !== 'All') {
-    result = result.filter(g => g.tag === tag);
-  }
-  res.json({ gallery: result, total: result.length });
-});
-
 // FAQ API
 app.get("/api/cms/faqs", async (req, res) => {
   const { category, search } = req.query;
@@ -416,22 +393,6 @@ app.get("/api/cms/faqs", async (req, res) => {
     );
   }
   res.json({ faqs: result, total: result.length });
-});
-
-// Case Studies API
-app.get("/api/cms/case-studies", async (req, res) => {
-  let result = [...CONSULTING_CASE_STUDIES];
-
-  try {
-    const sanityCaseStudies = await sanityClient.fetch(CASE_STUDIES_QUERY);
-    if (sanityCaseStudies && sanityCaseStudies.length > 0) {
-      result = sanityCaseStudies;
-    }
-  } catch (err) {
-    // Fallback
-  }
-
-  res.json({ caseStudies: result });
 });
 
 // 4. Analytics Tracking & Attribution

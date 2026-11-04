@@ -93,7 +93,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             Rules of the Kitchen
           </h2>
           <p className="font-text text-[16px] text-[#9c9488]">
-            Standards cultivated across a quarter-century of hot services, informing every advisory engagement.
+            Standards cultivated across twenty-four years of hot services, informing every advisory engagement.
           </p>
         </div>
 

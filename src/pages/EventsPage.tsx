@@ -1,9 +1,8 @@
 import React from 'react';
-import { RoutePath, EventGalleryItem } from '../types';
+import { RoutePath } from '../types';
 
 interface EventsPageProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
-  onOpenLightbox?: (item: EventGalleryItem) => void;
 }
 
 export const EventsPage: React.FC<EventsPageProps> = ({

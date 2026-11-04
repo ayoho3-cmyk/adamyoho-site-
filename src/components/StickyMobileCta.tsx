@@ -25,7 +25,7 @@ export const StickyMobileCta: React.FC<StickyMobileCtaProps> = ({
             DIRECT ENGAGEMENTS
           </span>
           <span className="font-text text-[13px] text-[#f5f0e8] leading-tight">
-            Consulting & Hearth Dining
+            Consulting & Private Dining
           </span>
         </div>
 

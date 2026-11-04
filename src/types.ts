@@ -43,30 +43,6 @@ export interface FAQItem {
   answer: string;
 }
 
-export interface EventGalleryItem {
-  id: string;
-  title: string;
-  location: string;
-  format: string;
-  guestCount: string;
-  image: string;
-  caption: string;
-  tag: 'Private Dining' | 'Bespoke Banquets' | 'Tasting Salons' | 'Atelier';
-}
-
-export interface ConsultingCaseStudy {
-  id: string;
-  title: string;
-  client: string;
-  location: string;
-  duration: string;
-  challenge: string;
-  solution: string;
-  outcome: string;
-  metrics: { label: string; value: string }[];
-  image: string;
-}
-
 export interface InquirySubmission {
   serviceType: ServiceBranch;
   name: string;

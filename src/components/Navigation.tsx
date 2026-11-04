@@ -231,7 +231,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                   Bespoke Events
                 </h4>
                 <p className="font-text text-[13px] text-[#9c9488]">
-                  Custom private dining tables, estate cellar celebrations, and seasonal terroir banquets (8–60 guests).
+                  Custom private dinners and banquets (8–60 guests).
                 </p>
               </div>
 

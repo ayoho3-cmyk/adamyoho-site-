@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { RoutePath, ServiceBranch, Article, EventGalleryItem, FAQItem } from './types';
+import { RoutePath, ServiceBranch, Article, FAQItem } from './types';
 import {
   INITIAL_ARTICLES,
-  INITIAL_FAQS,
-  INITIAL_EVENT_GALLERY
+  INITIAL_FAQS
 } from './data/cms';
 
 // Shared Components
@@ -11,7 +10,6 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { StickyMobileCta } from './components/StickyMobileCta';
 import { CalendlyModal } from './components/CalendlyModal';
-import { LightboxModal } from './components/LightboxModal';
 
 // Route Pages
 import { HomePage } from './pages/HomePage';
@@ -38,20 +36,17 @@ export default function App() {
   // CMS Content State (Live queries from Headless CMS with initial fallback)
   const [articles, setArticles] = useState<Article[]>(INITIAL_ARTICLES);
   const [faqs, setFaqs] = useState<FAQItem[]>(INITIAL_FAQS);
-  const [eventGallery, setEventGallery] = useState<EventGalleryItem[]>(INITIAL_EVENT_GALLERY);
 
   // Modals
   const [isCalendlyOpen, setIsCalendlyOpen] = useState<boolean>(false);
-  const [lightboxItem, setLightboxItem] = useState<EventGalleryItem | null>(null);
 
   // Live query CMS data from headless endpoint
   useEffect(() => {
     const loadCmsData = async () => {
       try {
-        const [artRes, faqRes, galRes] = await Promise.all([
+        const [artRes, faqRes] = await Promise.all([
           fetch('/api/cms/articles'),
-          fetch('/api/cms/faqs'),
-          fetch('/api/cms/gallery')
+          fetch('/api/cms/faqs')
         ]);
 
         if (artRes.ok) {
@@ -68,12 +63,6 @@ export default function App() {
           }
         }
 
-        if (galRes.ok) {
-          const galData = await galRes.json();
-          if (Array.isArray(galData.gallery) && galData.gallery.length > 0) {
-            setEventGallery(galData.gallery);
-          }
-        }
       } catch (err) {
         // Fallback gracefully to pre-bundled data
         console.info('Loaded pre-compiled static CMS dataset');
@@ -196,7 +185,6 @@ export default function App() {
         {currentRoute === 'events' && (
           <EventsPage
             onNavigate={handleNavigate}
-            onOpenLightbox={(item) => setLightboxItem(item)}
           />
         )}
 
@@ -260,15 +248,6 @@ export default function App() {
         isOpen={isCalendlyOpen}
         onClose={() => setIsCalendlyOpen(false)}
         serviceBranch={callRequestBranch}
-      />
-
-      {/* Photo Lightbox */}
-      <LightboxModal
-        isOpen={!!lightboxItem}
-        onClose={() => setLightboxItem(null)}
-        image={lightboxItem?.image || ''}
-        title={lightboxItem?.title || ''}
-        caption={lightboxItem?.caption}
       />
 
     </div>
