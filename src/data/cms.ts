@@ -94,42 +94,6 @@ export const INITIAL_ARTICLES: Article[] = [
     ],
     chefNotes: 'Always ensure your breading station is clean and dry. Render the diced skin slowly on low heat so the cracklings become completely crisp rather than chewy.',
     featured: true
-  },
-  {
-    slug: 'cruelty-of-the-clock-tasting-menus',
-    title: 'The Cruelty of the Clock: Why Tasting Menus Lose Their Way After Course Seven',
-    subtitle: 'On culinary sensory fatigue, kitchen pacing, and the discipline of ending while guests still desire more.',
-    category: 'Essays',
-    date: '03. JANUARY 2026',
-    readTime: '5 MIN READ',
-    heroImage: '/kitchen-pass-hero.jpg',
-    caption: 'THE PASS AT COURSE SIX: SENSORY PALATE TRANSITION',
-    excerpt: 'The modern sixteen-course marathon is often a monument to the chef’s ego rather than the diner’s pleasure. Real craftsmanship is knowing what to omit.',
-    body: [
-      'In the mid-2000s, fine dining fell victim to an arms race of quantity masquerading as luxury. Menus stretched to twenty-four bites, each accompanied by an oral lecture from a front-of-house captain while the butter melted and the foam collapsed.',
-      'By course fourteen, human palate fatigue is a biological reality. The receptor cells on the tongue are dulled by salt, lipid, and acidity. What the guest experiences in the third hour is not wonder—it is endurance.',
-      'The first intervention is almost always subtraction: strip the sequence down to eight pristine, mathematically paced movements. Send the guest into the evening feeling illuminated, buoyant, and longing for one more bite.'
-    ],
-    chefNotes: 'Pacing between courses must never exceed twelve minutes, nor should it rush below seven. The tempo of the dining room is as musical as a score.',
-    featured: false
-  },
-  {
-    slug: 'art-of-the-kitchen-stage',
-    title: 'The Art of the Kitchen Stage: Mentoring the Next Generation of Line Cooks',
-    subtitle: 'Why speed is a byproduct of clean stations, quiet hands, and mental mise-en-place.',
-    category: 'Technique',
-    date: '19. FEBRUARY 2026',
-    readTime: '7 MIN READ',
-    heroImage: '/culinary-knives-roll.jpg',
-    caption: 'MORNING STATION PREP: FISH SIGHTING & KNIFE GEOMETRY',
-    excerpt: 'A cook running around frantically is not cooking fast; they are hemorrhaging seconds fixing yesterday’s disorganization. Quiet hands make lightning services.',
-    body: [
-      'When a young cook enters my kitchen for mentorship, I do not ask them to cook an omelette or butcher a duck. I ask them to wash a flat of chanterelles, wipe their cutting board, and set their station.',
-      'In sixty seconds, everything is revealed. Where did they place their side towel? Is their knife bolster clean? Are their tasting spoons organized by direction? How do they carry themselves across the duckboards?',
-      'Mentorship is not the transfer of recipes; recipes are cheap and everywhere. Mentorship is the transmission of kitchen discipline—the internal composure that allows a chef to stand before eighty covers with twenty pans firing and feel total stillness in the chest.'
-    ],
-    chefNotes: 'Mise-en-place is not physical ingredients in containers. It is a psychological state of finished intention before the first ticket prints.',
-    featured: true
   }
 ];
 
@@ -144,7 +108,7 @@ export const INITIAL_FAQS: FAQItem[] = [
     id: 'faq-2',
     category: 'Consulting',
     question: 'How are consulting engagements structured and scoped?',
-    answer: 'Engagements typically follow a four-stage framework: (1) Discovery & Line Diagnostic Audit, (2) Menu & Station R&D, (3) Brigade Handover & Recipe Bible Standardization, and (4) Live Pass Oversight during launch or repositioning. Engagements can be project-based (4 to 12 weeks) or structured as quarterly executive advisory retainers.'
+    answer: 'Engagements typically follow a four-stage framework: (1) Discovery & Line Diagnostic Audit, (2) Menu & Station R&D, (3) Brigade Handover & Recipe Bible Standardization, and (4) Live Pass Oversight during launch or repositioning. Engagements can be project-based or structured as quarterly executive advisory retainers.'
   },
   {
     id: 'faq-3',
@@ -183,7 +147,7 @@ export const TIMELINE_EVENTS = [
     year: '2002–2006',
     title: 'Culinary Genesis at The Food Studio',
     location: 'Atlanta, Georgia',
-    description: 'Career began at The Food Studio in Atlanta, Georgia. Mastered classical foundations, wood-fired line execution, butchery, and brigade communication in a high-standard kitchen.'
+    description: 'Career began at The Food Studio in Atlanta, Georgia. Learned classical foundations, butchery, and brigade communication in a high-standard kitchen.'
   },
   {
     year: '2007–2015',

@@ -21,7 +21,7 @@ export interface Article {
   slug: string;
   title: string;
   subtitle?: string;
-  category: 'Essays' | 'Recipes' | 'Technique';
+  category: 'Essays' | 'Recipes';
   date: string;
   readTime: string;
   heroImage: string;

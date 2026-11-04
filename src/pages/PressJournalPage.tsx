@@ -16,7 +16,7 @@ export const PressJournalPage: React.FC<PressJournalPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['All', 'Essays', 'Recipes', 'Technique'];
+  const categories = ['All', 'Essays', 'Recipes'];
 
   const filteredArticles = (articles || []).filter((art) => {
     const matchesCat = selectedCategory === 'All' || art.category === selectedCategory;

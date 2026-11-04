@@ -41,25 +41,21 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
     {
       step: 'STAGE 1',
       title: 'Line Diagnostic & Cover Audit',
-      timeline: 'Weeks 1–2',
       desc: 'Chef Yoho observes multiple live services on the hot line, auditing station bottlenecking, ticket cadence, plating consistency, and waste streams.'
     },
     {
       step: 'STAGE 2',
       title: 'Menu R&D & Station Re-Engineering',
-      timeline: 'Weeks 3–6',
-      desc: 'Developing and test-firing opening menus or seasonal revamps. Streamlining station layouts and building the kitchen’s master recipe and technique documentation.'
+      desc: 'Developing and test-firing opening menus or seasonal revamps. Streamlining station layouts and building the kitchen’s recipe and technique documentation.'
     },
     {
       step: 'STAGE 3',
       title: 'Brigade Immersion & Dry-Run Services',
-      timeline: 'Weeks 7–10',
       desc: 'Hands-on station coaching with line cooks, sous chefs, and expediter pass leads. Running simulated service marathons under heavy cover pressures.'
     },
     {
       step: 'STAGE 4',
       title: 'Launch Pass Oversight & Retention Audits',
-      timeline: 'Weeks 11–16',
       desc: 'Standing shoulder-to-shoulder with the brigade during opening or relaunch weeks, followed by 30-day and 90-day quality and margin checks.'
     }
   ];
@@ -161,9 +157,6 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
                 <div className="flex items-center justify-between border-b border-[#2a2825] pb-2">
                   <span className="font-mono-kitchen text-[11px] tracking-[2px] text-[#c1651a]">
                     {step.step}
-                  </span>
-                  <span className="font-mono-kitchen text-[10px] text-[#9c9488]">
-                    {step.timeline}
                   </span>
                 </div>
                 <h4 className="font-display text-[18px] tracking-[1px] uppercase text-[#f5f0e8]">

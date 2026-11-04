@@ -25,7 +25,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
           Twenty four years at the pass, began at The Food Studio in Atlanta and has spanned from the Texas Hill Country to Columbus, Ohio; from Pittsburgh to Austin.
         </p>
         <p className="font-text text-[16px] sm:text-[17px] text-[#d4cfc4] leading-relaxed max-w-2xl mx-auto">
-          Over the course of 24 years, has led teams from pizza shops to high end steakhouse, taquerias to bistros, and been part of 8 openings including owning Uptown 51. He has developed an approach defined by passionate ingredient sourcing, calm, concentrated service, and classic technique.
+          Over the course of 24 years, has led teams from pizza shops to high end steakhouse, taquerias to bistros, and spearheaded 8 openings including owning Uptown 51. He has developed an approach defined by passionate ingredient sourcing, calm, concentrated service, and classic technique.
         </p>
         <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
           <button

@@ -54,10 +54,10 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-7 space-y-6">
             <span className="font-mono-kitchen text-[11px] tracking-[3px] text-[#c1651a] uppercase block">
-              PRACTICE AREA 03 · LINE MASTERY
+              PRACTICE AREA 03 · LINE COACHING
             </span>
             <h1 className="font-display text-[36px] sm:text-[52px] md:text-[60px] tracking-[3px] uppercase text-[#f5f0e8] leading-[1.08]">
-              Master Culinary Mentorship & Stage Coaching
+              Culinary Mentorship & Stage Coaching
             </h1>
             <p className="font-text text-[18px] sm:text-[20px] text-[#d4cfc4] leading-relaxed">
               Direct, intensive coaching for working sous chefs, chef de parties, and culinary leaders preparing to take command of their own kitchen pass.
@@ -107,7 +107,7 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
         </p>
       </section>
 
-      {/* 3. The 3 Stages of Mastery */}
+      {/* 3. The 3 Stages */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 md:px-20 border-t border-[#1c1a18] pt-20">
         <div className="space-y-4 mb-16 max-w-3xl">
           <span className="font-mono-kitchen text-[11px] tracking-[2.5px] text-[#c1651a] uppercase block">

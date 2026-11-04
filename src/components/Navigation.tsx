@@ -240,7 +240,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 className="p-5 bg-[#161514] border border-[#2a2825] cursor-pointer hover:border-[#423e38] transition-colors"
               >
                 <span className="font-mono-kitchen text-[10px] tracking-[2px] text-[#c1651a] block mb-1">
-                  KITCHEN MASTERY
+                  LINE COACHING
                 </span>
                 <h4 className="font-display text-[18px] text-[#f5f0e8] tracking-[1.5px] uppercase mb-2">
                   Chef Mentorship

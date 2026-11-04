@@ -59,7 +59,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </h1>
 
           <p className="font-text text-[16px] sm:text-[20px] text-[#d4cfc4] max-w-2xl mx-auto leading-relaxed">
-            Culinary consulting for hospitality groups, bespoke private dining experiences, and master mentorship for the next generation of chefs.
+            Culinary consulting for hospitality groups, bespoke private dining experiences, and chef mentorship for the next generation of chefs.
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -209,7 +209,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 />
               </div>
               <span className="font-mono-kitchen text-[10px] tracking-[2px] text-[#c1651a] block">
-                03 · MASTER LINE COACHING
+                03 · LINE COACHING
               </span>
               <h3 className="font-display text-[24px] tracking-[1.5px] uppercase text-[#f5f0e8]">
                 Chef Mentorship
