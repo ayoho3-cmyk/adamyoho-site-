@@ -1,6 +1,5 @@
 import {
   INITIAL_ARTICLES,
-  INITIAL_TESTIMONIALS,
   INITIAL_FAQS,
   INITIAL_EVENT_GALLERY,
   CONSULTING_CASE_STUDIES,
@@ -20,11 +19,10 @@ export interface Env {
 }
 
 // --- Static CMS content ---
-// Articles/testimonials/faqs/gallery/case-studies are read-only seed data.
+// Articles/faqs/gallery/case-studies are read-only seed data.
 // If an editor is ever added, move them into D1 and put the write routes
 // behind requireAdmin, like the inquiry and analytics reads below.
 const articlesList = [...INITIAL_ARTICLES];
-const testimonialsList = [...INITIAL_TESTIMONIALS];
 const faqsList = [...INITIAL_FAQS];
 const galleryList = [...INITIAL_EVENT_GALLERY];
 
@@ -589,22 +587,6 @@ export default {
         }
         const related = articlesList.filter((a) => a.slug !== slug).slice(0, 2);
         return json({ article, related });
-      }
-
-      if (url.pathname === "/api/cms/testimonials") {
-        if (request.method === "GET") {
-          const serviceType = url.searchParams.get("serviceType");
-          const featured = url.searchParams.get("featured");
-          let result = [...testimonialsList];
-          if (serviceType && serviceType !== "all") {
-            result = result.filter((t) => t.serviceType === serviceType);
-          }
-          if (featured === "true") {
-            result = result.filter((t) => t.featured);
-          }
-          return json({ testimonials: result, total: result.length });
-        }
-        return json({ error: "Method not allowed." }, 405);
       }
 
       if (url.pathname === "/api/cms/gallery") {

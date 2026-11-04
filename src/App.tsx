@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { RoutePath, ServiceBranch, Article, EventGalleryItem, Testimonial, FAQItem } from './types';
+import { RoutePath, ServiceBranch, Article, EventGalleryItem, FAQItem } from './types';
 import {
   INITIAL_ARTICLES,
-  INITIAL_TESTIMONIALS,
   INITIAL_FAQS,
   INITIAL_EVENT_GALLERY
 } from './data/cms';
@@ -38,7 +37,6 @@ export default function App() {
 
   // CMS Content State (Live queries from Headless CMS with initial fallback)
   const [articles, setArticles] = useState<Article[]>(INITIAL_ARTICLES);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(INITIAL_TESTIMONIALS);
   const [faqs, setFaqs] = useState<FAQItem[]>(INITIAL_FAQS);
   const [eventGallery, setEventGallery] = useState<EventGalleryItem[]>(INITIAL_EVENT_GALLERY);
 
@@ -50,9 +48,8 @@ export default function App() {
   useEffect(() => {
     const loadCmsData = async () => {
       try {
-        const [artRes, testRes, faqRes, galRes] = await Promise.all([
+        const [artRes, faqRes, galRes] = await Promise.all([
           fetch('/api/cms/articles'),
-          fetch('/api/cms/testimonials'),
           fetch('/api/cms/faqs'),
           fetch('/api/cms/gallery')
         ]);
@@ -61,13 +58,6 @@ export default function App() {
           const artData = await artRes.json();
           if (Array.isArray(artData.articles) && artData.articles.length > 0) {
             setArticles(artData.articles);
-          }
-        }
-
-        if (testRes.ok) {
-          const testData = await testRes.json();
-          if (Array.isArray(testData.testimonials) && testData.testimonials.length > 0) {
-            setTestimonials(testData.testimonials);
           }
         }
 
@@ -184,8 +174,6 @@ export default function App() {
             onNavigate={handleNavigate}
             articles={articles}
             featuredArticles={articles.filter(a => a.featured)}
-            testimonials={testimonials}
-            featuredTestimonial={testimonials.find(t => t.featured) || testimonials[0]}
             onOpenCalendly={() => setIsCalendlyOpen(true)}
             onSelectArticle={handleSelectArticle}
           />
@@ -201,7 +189,6 @@ export default function App() {
         {currentRoute === 'consulting' && (
           <ConsultingPage
             onNavigate={handleNavigate}
-            testimonials={testimonials}
             onOpenCalendly={() => setIsCalendlyOpen(true)}
           />
         )}
@@ -209,7 +196,6 @@ export default function App() {
         {currentRoute === 'events' && (
           <EventsPage
             onNavigate={handleNavigate}
-            testimonials={testimonials}
             onOpenLightbox={(item) => setLightboxItem(item)}
           />
         )}
@@ -217,7 +203,6 @@ export default function App() {
         {currentRoute === 'mentorship' && (
           <MentorshipPage
             onNavigate={handleNavigate}
-            testimonials={testimonials}
             onOpenCalendly={() => setIsCalendlyOpen(true)}
           />
         )}

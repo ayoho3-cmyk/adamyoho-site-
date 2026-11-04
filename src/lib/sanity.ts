@@ -87,19 +87,6 @@ export const CASE_STUDIES_QUERY = `*[_type == "consultingCaseStudy"] | order(_cr
   "image": image.asset->url
 }`;
 
-// 3. Testimonials Query
-export const TESTIMONIALS_QUERY = `*[_type == "testimonial"] | order(year desc) {
-  _id,
-  "id": _id,
-  author,
-  title,
-  establishmentOrContext,
-  serviceType,
-  quote,
-  year,
-  featured
-}`;
-
 // 4. Event Gallery Query
 export const EVENT_GALLERY_QUERY = `*[_type == "eventGalleryItem"] | order(_createdAt desc) {
   _id,

@@ -455,7 +455,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         'Tasting Menu R&D & Recipe Bibles',
                         'Prime Food Cost & Yield Engineering',
                         'Brigade Station Discipline & SOPs',
-                        'Michelin Guide Audit Preparation',
                         'Direct Purveyor Network Sourcing'
                       ].map((item) => (
                         <button

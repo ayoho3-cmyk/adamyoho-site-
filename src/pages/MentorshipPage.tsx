@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { RoutePath, Testimonial } from '../types';
+import { RoutePath } from '../types';
 import { Calendar } from 'lucide-react';
 import { ScheduleEmbed } from '../components/ScheduleEmbed';
 
 interface MentorshipPageProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
-  testimonials?: Testimonial[];
   onOpenCalendly: () => void;
 }
 

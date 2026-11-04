@@ -1,4 +1,4 @@
-import { Article, Testimonial, FAQItem, EventGalleryItem, ConsultingCaseStudy } from '../types';
+import { Article, FAQItem, EventGalleryItem, ConsultingCaseStudy } from '../types';
 
 export const INITIAL_ARTICLES: Article[] = [
   {
@@ -130,87 +130,6 @@ export const INITIAL_ARTICLES: Article[] = [
     ],
     chefNotes: 'Mise-en-place is not physical ingredients in containers. It is a psychological state of finished intention before the first ticket prints.',
     featured: true
-  },
-  {
-    slug: 'nyt-profile-silence-is-an-ingredient',
-    title: 'The New York Times: "In Adam Yoho’s Hands, Silence is an Ingredient"',
-    subtitle: 'A retrospective on twenty-five years shaping culinary standards away from the cameras.',
-    category: 'Press',
-    date: '11. AUGUST 2025',
-    readTime: '4 MIN READ',
-    heroImage: '/mentorship-pans.jpg',
-    caption: 'PRESS ARCHIVE: HEALDSBURG ATELIER OPENING RETROSPECTIVE',
-    excerpt: 'While celebrity chefs built media empires and frozen meal lines, Chef Adam Yoho remained where he has always been: six inches from the hot line with a tasting spoon in hand.',
-    body: [
-      '“There are chefs who perform for audiences, and there are cooks who cook for the person sitting in chair number four,” writes culinary critic Marcus Vance. “Adam Yoho belongs unequivocally to the latter tradition.”',
-      'Across twenty-five years spanning classical French apprentice work in Lyon, California farm-to-table lineage, and his quiet consulting practice advising the world’s most respected dining rooms, Yoho has cultivated an almost monastic reputation for precision.',
-      '“He does not shout, he does not film TikTok reels in chef jackets,” noted the Food & Wine retrospective. “He simply builds the cleanest, most uncompromising kitchens in the country.”'
-    ],
-    chefNotes: 'Published in The New York Times Arts & Dining Section, August 2025.',
-    featured: true
-  }
-];
-
-export const INITIAL_TESTIMONIALS: Testimonial[] = [
-  {
-    id: 't-1',
-    author: 'Julian Mercer',
-    title: 'Managing Partner',
-    establishmentOrContext: 'Mercer & Crane Hospitality Group (2 Michelin Stars)',
-    serviceType: 'consulting',
-    quote: 'Adam re-engineered our hot line operations and pass architecture before our grand opening. Within four weeks, our ticket times dropped 35%, food cost variance normalized to 0.4%, and our kitchen team operated with a calm I have never seen in twenty years of hospitality.',
-    year: '2025',
-    featured: true
-  },
-  {
-    id: 't-2',
-    author: 'Claire St. Claire',
-    title: 'Estate Director',
-    establishmentOrContext: 'St. Claire Reserve Cellars, Napa Valley',
-    serviceType: 'events',
-    quote: 'Chef Yoho designed and executed our 50th Anniversary Harvest Dinner over live oak coals for thirty international collectors. It was not merely dinner; it was the most transcendent culinary expression of our terroir we have ever hosted.',
-    year: '2025',
-    featured: true
-  },
-  {
-    id: 't-3',
-    author: 'Chef Marcus Nguyen',
-    title: 'Executive Chef & Owner',
-    establishmentOrContext: 'Anise & Embers (San Francisco)',
-    serviceType: 'mentorship',
-    quote: 'Under Adam’s mentorship as his sous chef and during my stage transition, I learned the mental discipline that allows me to lead my own 40-seat kitchen today without shouting, without panic, and with absolute culinary rigor.',
-    year: '2024',
-    featured: true
-  },
-  {
-    id: 't-4',
-    author: 'David Thorne',
-    title: 'Culinary Vice President',
-    establishmentOrContext: 'The Auberge Collection, Western Region',
-    serviceType: 'consulting',
-    quote: 'When we needed to reposition the flagship dining room at our Sonoma resort, Adam was the only phone call we made. His tasting menu R&D and brigade station training set a benchmark that our culinary directors still reference daily.',
-    year: '2025',
-    featured: false
-  },
-  {
-    id: 't-5',
-    author: 'Dr. Eleanor & Robert Vance',
-    title: 'Private Patrons',
-    establishmentOrContext: 'Private 12-Course Hearth Table, Carmel-by-the-Sea',
-    serviceType: 'events',
-    quote: 'Watching Adam work at the pass in our home was like observing a master luthier tune an instrument. Every course was quiet, deliberate, and extraordinarily delicious. Our guests are still discussing the charred marrow broth six months later.',
-    year: '2026',
-    featured: false
-  },
-  {
-    id: 't-6',
-    author: 'Sora Kim',
-    title: 'Head Pastry Chef',
-    establishmentOrContext: 'L’Atelier Nordique (Seattle)',
-    serviceType: 'mentorship',
-    quote: 'Adam’s insight into palate sequencing and bitter-savory balance transformed how I construct dessert courses. He teaches cooks how to listen to food rather than imposing technique for the sake of ego.',
-    year: '2025',
-    featured: false
   }
 ];
 
@@ -323,22 +242,6 @@ export const INITIAL_EVENT_GALLERY: EventGalleryItem[] = [
 ];
 
 export const CONSULTING_CASE_STUDIES: ConsultingCaseStudy[] = [
-  {
-    id: 'cs-1',
-    title: 'Kitchen Line Re-Engineering & 2-Star Michelin Transition',
-    client: 'The Mercer Dining Room',
-    location: 'San Francisco, CA',
-    duration: '16 Weeks',
-    challenge: 'A high-profile 70-cover establishment was experiencing severe ticket bottlenecking at the hot sauté pass, leading to inconsistent protein temperatures and escalating brigade turnover.',
-    solution: 'Chef Yoho conducted a full ergonomic station diagnostic, re-mapped cook traffic lines, redesigned the meat and fish prep schedules into dedicated morning mise-en-place blocks, and standardized an 8-course precision pacing protocol.',
-    outcome: 'Average table ticket variance reduced from ±14 minutes to under 2 minutes. Food waste dropped 22%, and the restaurant secured its second Michelin star in the subsequent guide release.',
-    metrics: [
-      { label: 'Ticket Variance', value: '-85%' },
-      { label: 'Food Waste Cost', value: '-22%' },
-      { label: 'Brigade Retention', value: '100%' }
-    ],
-    image: '/kitchen-pass-hero.jpg'
-  },
   {
     id: 'cs-2',
     title: 'Boutique Estate Hotel Culinary Direction & Launch',

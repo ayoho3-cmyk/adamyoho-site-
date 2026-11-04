@@ -1,5 +1,5 @@
 import React from 'react';
-import { RoutePath, Article, Testimonial } from '../types';
+import { RoutePath, Article } from '../types';
 import { ArrowRight } from 'lucide-react';
 import kitchenPassHero from '../assets/images/kitchen_pass_hero.jpg';
 import bespokeEventsDinner from '../assets/images/bespoke_events_dinner.jpg';
@@ -8,8 +8,6 @@ interface HomePageProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
   articles?: Article[];
   featuredArticles?: Article[];
-  testimonials?: Testimonial[];
-  featuredTestimonial?: Testimonial;
   onOpenCalendly?: () => void;
   onSelectArticle: (article: Article) => void;
 }

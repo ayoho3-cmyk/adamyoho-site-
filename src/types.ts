@@ -6,7 +6,6 @@ export type RoutePath =
   | 'mentorship'
   | 'press'
   | 'press-detail'
-  | 'testimonials'
   | 'faq'
   | 'contact';
 
@@ -22,7 +21,7 @@ export interface Article {
   slug: string;
   title: string;
   subtitle?: string;
-  category: 'Essays' | 'Recipes' | 'Technique' | 'Press';
+  category: 'Essays' | 'Recipes' | 'Technique';
   date: string;
   readTime: string;
   heroImage: string;
@@ -35,18 +34,6 @@ export interface Article {
   recipeSections?: RecipeSection[];
   harvestProvenance?: string;
   featured?: boolean;
-}
-
-export interface Testimonial {
-  id: string;
-  author: string;
-  title: string;
-  establishmentOrContext: string;
-  serviceType: ServiceBranch;
-  quote: string;
-  year: string;
-  featured?: boolean;
-  avatar?: string;
 }
 
 export interface FAQItem {

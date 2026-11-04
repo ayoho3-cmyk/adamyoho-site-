@@ -1,13 +1,12 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { INITIAL_ARTICLES, INITIAL_TESTIMONIALS, INITIAL_FAQS, INITIAL_EVENT_GALLERY, CONSULTING_CASE_STUDIES } from "./src/data/cms";
+import { INITIAL_ARTICLES, INITIAL_FAQS, INITIAL_EVENT_GALLERY, CONSULTING_CASE_STUDIES } from "./src/data/cms";
 import { 
   sanityClient, 
   ARTICLES_QUERY, 
   ARTICLE_BY_SLUG_QUERY, 
   CASE_STUDIES_QUERY,
-  TESTIMONIALS_QUERY,
   EVENT_GALLERY_QUERY,
   FAQS_QUERY
 } from "./src/lib/sanity";
@@ -20,7 +19,6 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
 // In-memory persistent data store (Headless / Git-based CMS & intake records)
 let articlesList = [...INITIAL_ARTICLES];
-let testimonialsList = [...INITIAL_TESTIMONIALS];
 let faqsList = [...INITIAL_FAQS];
 let galleryList = [...INITIAL_EVENT_GALLERY];
 
@@ -113,7 +111,6 @@ app.get("/sitemap.xml", (req, res) => {
     { loc: "/events", priority: "0.9", changefreq: "weekly" },
     { loc: "/mentorship", priority: "0.9", changefreq: "monthly" },
     { loc: "/press-journal", priority: "0.8", changefreq: "weekly" },
-    { loc: "/testimonials", priority: "0.7", changefreq: "monthly" },
     { loc: "/faq", priority: "0.6", changefreq: "monthly" },
     { loc: "/contact", priority: "0.9", changefreq: "monthly" },
   ];
@@ -371,40 +368,6 @@ app.post("/api/cms/articles", (req, res) => {
   }
   articlesList.unshift(newArt);
   res.status(201).json({ success: true, article: newArt });
-});
-
-// Testimonials Query API with Service Type filter and Featured Flag
-app.get("/api/cms/testimonials", async (req, res) => {
-  const { serviceType, featured } = req.query;
-  let result = [...testimonialsList];
-
-  try {
-    const sanityTestimonials = await sanityClient.fetch(TESTIMONIALS_QUERY);
-    if (sanityTestimonials && sanityTestimonials.length > 0) {
-      result = sanityTestimonials;
-    }
-  } catch (err) {
-    // Fallback to local seed data
-  }
-
-  if (serviceType && serviceType !== 'all') {
-    result = result.filter(t => t.serviceType === serviceType);
-  }
-
-  if (featured === 'true') {
-    result = result.filter(t => t.featured);
-  }
-
-  res.json({ testimonials: result, total: result.length });
-});
-
-app.post("/api/cms/testimonials", (req, res) => {
-  const newTest = req.body;
-  if (!newTest.quote || !newTest.author) {
-    return res.status(422).json({ error: "Quote and author are required." });
-  }
-  testimonialsList.unshift(newTest);
-  res.status(201).json({ success: true, testimonial: newTest });
 });
 
 // Event Gallery API

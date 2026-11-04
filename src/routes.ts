@@ -1,7 +1,5 @@
 import { RoutePath, ServiceBranch } from './types';
 
-// The testimonials page is deliberately left out: its content is unverified,
-// so it has no public URL until real quotes replace the seed data.
 const ROUTE_PATHS: Partial<Record<RoutePath, string>> = {
   home: '/',
   about: '/about',
@@ -18,7 +16,7 @@ const ROUTE_TITLES: Partial<Record<RoutePath, string>> = {
   consulting: 'Culinary Consulting',
   events: 'Private Events',
   mentorship: 'Chef Mentorship',
-  press: 'Press & Journal',
+  press: 'Kitchen Journal',
   faq: 'FAQ',
   contact: 'Contact'
 };
