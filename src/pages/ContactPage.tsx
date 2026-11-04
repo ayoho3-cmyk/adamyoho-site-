@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RoutePath, ServiceBranch, InquirySubmission, InquiryResponse } from '../types';
 import { CheckCircle2, AlertCircle, ArrowRight, ShieldCheck, Clock, FileText, Send, Sparkles, RefreshCw, Calendar } from 'lucide-react';
-import { trackBranchSelect, trackInquirySubmit } from '../utils/analytics';
+import { trackBranchSelect } from '../utils/analytics';
 
 interface ContactPageProps {
   initialBranch?: ServiceBranch;
@@ -27,12 +27,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   // Branch 1: Consulting fields
   const [consultingEstablishment, setConsultingEstablishment] = useState('');
   const [consultingLocation, setConsultingLocation] = useState('');
-  const [consultingTimeline, setConsultingTimeline] = useState('Q3 2026 (Aug–Oct)');
-  const [consultingSeats, setConsultingSeats] = useState('40–80 Seats');
-  const [consultingScope, setConsultingScope] = useState<string[]>([
-    'Kitchen Line Ergonomics',
-    'Tasting Menu R&D'
-  ]);
+  const [consultingTimeline, setConsultingTimeline] = useState('Within 3 months');
+  const [consultingSeats, setConsultingSeats] = useState('40–80 Seats (Fine Dining)');
+  const [consultingScope, setConsultingScope] = useState<string[]>([]);
   const [consultingBudget, setConsultingBudget] = useState('$25,000 – $50,000');
 
   // Branch 2: Events fields
@@ -162,35 +159,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       if (res.ok) {
         const data: InquiryResponse = await res.json();
         setConfirmationData(data);
-        trackInquirySubmit(selectedBranch, data.inquiryId, {
-          name,
-          email,
-          phone: phone || undefined,
-          serviceType: selectedBranch,
-          ...branchDetails
-        });
       } else {
         const errData = await res.json();
         setErrors({ form: errData.error || 'Submission failed. Please check your fields.' });
       }
     } catch (err) {
-      // Fallback offline confirmation
-      const fallbackId = `AY-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-      setConfirmationData({
-        success: true,
-        inquiryId: fallbackId,
-        serviceType: selectedBranch,
-        receivedAt: new Date().toISOString(),
-        tags: [`#${selectedBranch}-intake`, '#direct-atelier'],
-        notificationRoutedTo: `#inquiries-${selectedBranch}`,
-        message: 'Your inquiry has been logged into Chef Adam Yoho’s service intake journal.'
-      });
-      trackInquirySubmit(selectedBranch, fallbackId, {
-        name,
-        email,
-        phone: phone || undefined,
-        serviceType: selectedBranch,
-        ...branchDetails
+      setErrors({
+        form: 'Your inquiry did not go through. Please try again or email chef@adamyoho.com.'
       });
     } finally {
       setIsSubmitting(false);
@@ -255,10 +230,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <span className="text-[#9c9488]">CLIENT SENDER:</span>
                   <span className="text-[#f5f0e8]">{name} &lt;{email}&gt;</span>
                 </div>
-                <div className="flex flex-wrap items-center justify-between border-b border-[#22201d] pb-3">
-                  <span className="text-[#9c9488]">ROUTED NOTIFICATION:</span>
-                  <span className="text-[#c1651a]">{confirmationData.notificationRoutedTo}</span>
-                </div>
                 <div className="flex flex-wrap items-center justify-between">
                   <span className="text-[#9c9488]">TIMESTAMP:</span>
                   <span className="text-[#9c9488]">{new Date(confirmationData.receivedAt).toUTCString()}</span>
@@ -266,7 +237,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               </div>
 
               <p className="font-text text-[16px] text-[#d4cfc4] leading-relaxed">
-                Thank you, {name}. Your inquiry has been routed to Chef Adam Yoho and the atelier pass. You will receive an initial response and engagement diagnostic within 24 to 48 business hours.
+                Thank you, {name}. Your inquiry has been sent to Chef Adam Yoho. You will hear back within two business days.
               </p>
 
               <div className="pt-4 border-t border-[#2a2825] flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -275,7 +246,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   onClick={onOpenCalendly}
                   className="btn-pill-transparent text-[12px] px-8 py-2.5 w-full sm:w-auto"
                 >
-                  SCHEDULE INTRO CALL NOW (20M)
+                  REQUEST INTRO CALL (20M)
                 </button>
                 <button
                   onClick={handleResetForm}
@@ -434,9 +405,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         onChange={(e) => setConsultingTimeline(e.target.value)}
                         className="w-full bg-[#0d0d0c] border border-[#423e38] text-[#f5f0e8] p-2.5 text-xs font-mono-kitchen"
                       >
-                        <option value="Q3 2026 (Immediate)">Q3 2026 (Immediate)</option>
-                        <option value="Q4 2026 (Autumn/Winter)">Q4 2026 (Autumn/Winter)</option>
-                        <option value="Q1/Q2 2027 (Pre-Opening)">Q1/Q2 2027 (Pre-Opening)</option>
+                        <option value="Within 3 months">Within 3 months</option>
+                        <option value="3–6 months">3–6 months</option>
+                        <option value="6–12 months">6–12 months</option>
                         <option value="Ongoing Advisory Retainer">Ongoing Advisory Retainer</option>
                       </select>
                     </div>
@@ -755,10 +726,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="space-y-1 text-center sm:text-left">
                   <span className="font-mono-kitchen text-[10px] tracking-[1.5px] text-[#666057] block">
-                    ASYNC ENCRYPTION & TAILORED SLACK DISPATCH
+                    SENT DIRECTLY TO CHEF ADAM YOHO
                   </span>
                   <span className="font-text text-[12px] text-[#9c9488]">
-                    No page reload. Direct confirmation upon transmission.
+                    You will see a confirmation once your inquiry is saved.
                   </span>
                 </div>
 
@@ -791,7 +762,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       {/* 3. Alternative Direct Calendly Scheduler Callout */}
       <section className="max-w-4xl mx-auto px-6 text-center space-y-4">
         <span className="font-mono-kitchen text-[11px] tracking-[2px] text-[#9c9488] block">
-          PREFER IMMEDIATE CALENDAR SCHEDULING OR DIRECT EMAIL?
+          PREFER A CALL OR DIRECT EMAIL?
         </span>
         <div className="flex flex-wrap items-center justify-center gap-6">
           <button
@@ -800,7 +771,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
             className="font-mono-kitchen text-[12px] tracking-[2px] text-[#c1651a] hover:text-[#f5f0e8] transition-colors inline-flex items-center space-x-2"
           >
             <Calendar className="w-4 h-4" />
-            <span>BOOK A 20-MINUTE INTRO CALL DIRECTLY ON CALENDAR →</span>
+            <span>REQUEST A 20-MINUTE INTRO CALL →</span>
           </button>
           <span className="text-[#423e38]">·</span>
           <a

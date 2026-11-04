@@ -317,7 +317,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               onClick={onOpenCalendly}
               className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
             >
-              BOOK 20-MIN INTRO CALL
+              REQUEST 20-MIN INTRO CALL
             </button>
           </div>
         </div>

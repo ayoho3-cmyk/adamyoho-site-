@@ -94,7 +94,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
                 onClick={onOpenCalendly}
                 className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
               >
-                BOOK 20-MIN SCOPING CALL
+                REQUEST 20-MIN SCOPING CALL
               </button>
             </div>
           </div>
@@ -189,7 +189,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
             Begin Your Consulting Diagnostic
           </h3>
           <p className="font-text text-[16px] text-[#d4cfc4] max-w-xl mx-auto">
-            Submit your establishment details through our branching intake form or book a direct 20-minute scoping call.
+            Submit your establishment details through our branching intake form or request a 20-minute scoping call.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
@@ -205,7 +205,7 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
               className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] hover:text-[#c1651a] border border-[#423e38] px-6 py-3 transition-colors flex items-center space-x-2"
             >
               <Calendar className="w-3.5 h-3.5 text-[#c1651a]" />
-              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'BOOK 20-MIN INTRO CALL DIRECTLY'}</span>
+              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'REQUEST 20-MIN INTRO CALL'}</span>
             </button>
           </div>
         </div>
@@ -215,9 +215,9 @@ export const ConsultingPage: React.FC<ConsultingPageProps> = ({
           <div className="animate-fadeIn">
             <ScheduleEmbed
               serviceBranch="consulting"
-              title="Book Culinary Advisory Scoping Call"
-              subtitle="Reserve a 20-minute video diagnostic with Chef Adam Yoho to evaluate line redesign, tasting menu engineering, or cost control audits."
-              defaultTopic="Culinary Advisory & Kitchen Line Scoping"
+              title="Request a Consulting Scoping Call"
+              subtitle="Tell Chef Adam Yoho about your kitchen and when you are free. He will email you to confirm a time for a 20-minute call."
+              topicPlaceholder="e.g. Line redesign, menu development, or a cost audit"
             />
           </div>
         )}

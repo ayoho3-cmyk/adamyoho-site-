@@ -5,6 +5,7 @@ import {
   INITIAL_EVENT_GALLERY,
   CONSULTING_CASE_STUDIES,
 } from "../src/data/cms";
+import { EmailMessage } from "cloudflare:email";
 
 export interface Env {
   ASSETS: Fetcher;
@@ -12,15 +13,16 @@ export interface Env {
   APP_URL?: string;
   EMAIL_MARKETING_PROVIDER?: string;
   EMAIL_MARKETING_WEBHOOK_URL?: string;
+  ADMIN_API_TOKEN?: string;
+  ALERT_EMAIL?: SendEmail;
+  INQUIRY_ALERT_TO?: string;
+  SLACK_INQUIRY_WEBHOOK_URL?: string;
 }
 
 // --- Static CMS content ---
-// Scope note: /api/cms/articles and /api/cms/testimonials have POST routes
-// below, but the frontend's "add" UI (CMSStudioModal) only updates local
-// React state and never calls them — so there is no live write traffic to
-// persist here yet. Articles/testimonials/faqs/gallery/case-studies stay as
-// static seed data. If the CMS editor is wired up to actually save, these
-// should move into D1 the same way inquiries/newsletter/analytics did below.
+// Articles/testimonials/faqs/gallery/case-studies are read-only seed data.
+// If an editor is ever added, move them into D1 and put the write routes
+// behind requireAdmin, like the inquiry and analytics reads below.
 const articlesList = [...INITIAL_ARTICLES];
 const testimonialsList = [...INITIAL_TESTIMONIALS];
 const faqsList = [...INITIAL_FAQS];
@@ -53,6 +55,20 @@ function json(data: unknown, status = 200): Response {
     status,
     headers: { "Content-Type": "application/json" },
   });
+}
+
+// Inquiries and analytics hold visitors' personal details. Fails closed: with
+// no ADMIN_API_TOKEN secret set, these routes reject every request.
+async function requireAdmin(request: Request, env: Env): Promise<Response | null> {
+  const denied = json({ error: "Unauthorized." }, 401);
+  if (!env.ADMIN_API_TOKEN) return denied;
+  const supplied = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ?? "";
+  const encoder = new TextEncoder();
+  const [a, b] = await Promise.all([
+    crypto.subtle.digest("SHA-256", encoder.encode(supplied)),
+    crypto.subtle.digest("SHA-256", encoder.encode(env.ADMIN_API_TOKEN)),
+  ]);
+  return crypto.subtle.timingSafeEqual(a, b) ? null : denied;
 }
 
 function applyRateLimit(
@@ -107,7 +123,6 @@ function generateSitemap(baseUrl: string): string {
     { loc: "/events", priority: "0.9", changefreq: "weekly" },
     { loc: "/mentorship", priority: "0.9", changefreq: "monthly" },
     { loc: "/press-journal", priority: "0.8", changefreq: "weekly" },
-    { loc: "/testimonials", priority: "0.7", changefreq: "monthly" },
     { loc: "/faq", priority: "0.6", changefreq: "monthly" },
     { loc: "/contact", priority: "0.9", changefreq: "monthly" },
   ];
@@ -163,7 +178,88 @@ function inquiryFromRow(row: Record<string, any>): Inquiry {
   };
 }
 
-async function handleInquiriesPost(request: Request, env: Env): Promise<Response> {
+interface AlertInquiry {
+  id: string;
+  serviceType: string;
+  name: string;
+  email: string;
+  phone?: string;
+  details?: Record<string, unknown>;
+  notes?: string;
+}
+
+function buildAlertEmail(from: string, to: string, inquiry: AlertInquiry): string {
+  // Visitor input must never be able to add email headers.
+  const clean = (value: string) => String(value).replace(/[\r\n]+/g, " ").trim();
+  const encode = (value: string) =>
+    btoa(String.fromCharCode(...new TextEncoder().encode(value)));
+  const detailLines = Object.entries(inquiry.details || {})
+    .filter(([, v]) => v !== "" && v !== null && v !== undefined)
+    .map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(", ") : String(v)}`);
+  const body = [
+    `New ${inquiry.serviceType} inquiry (${inquiry.id})`,
+    "",
+    `Name: ${inquiry.name}`,
+    `Email: ${inquiry.email}`,
+    `Phone: ${inquiry.phone || "Not provided"}`,
+    ...detailLines,
+    "",
+    `Notes: ${inquiry.notes || "None"}`,
+  ].join("\r\n");
+  const subject = `New ${inquiry.serviceType} inquiry from ${clean(inquiry.name)}`;
+  return [
+    `From: Adam Yoho Website <${from}>`,
+    `To: ${to}`,
+    `Reply-To: ${clean(inquiry.email)}`,
+    `Subject: =?UTF-8?B?${encode(subject)}?=`,
+    `Message-ID: <${inquiry.id}.${Date.now()}@adamyoho.com>`,
+    `Date: ${new Date().toUTCString()}`,
+    "MIME-Version: 1.0",
+    'Content-Type: text/plain; charset="UTF-8"',
+    "Content-Transfer-Encoding: base64",
+    "",
+    encode(body).replace(/(.{76})/g, "$1\r\n"),
+  ].join("\r\n");
+}
+
+// Runs after the inquiry is saved, so a failed alert never loses the lead.
+async function sendInquiryAlerts(
+  env: Env,
+  inquiry: AlertInquiry,
+  slackPayload: Record<string, unknown>
+): Promise<void> {
+  if (env.ALERT_EMAIL && env.INQUIRY_ALERT_TO) {
+    const from = "alerts@adamyoho.com";
+    try {
+      await env.ALERT_EMAIL.send(
+        new EmailMessage(from, env.INQUIRY_ALERT_TO, buildAlertEmail(from, env.INQUIRY_ALERT_TO, inquiry))
+      );
+    } catch (err) {
+      console.error(`Email alert failed for inquiry ${inquiry.id}:`, err);
+    }
+  } else {
+    console.warn(`No email alert sent for inquiry ${inquiry.id}: INQUIRY_ALERT_TO is not set.`);
+  }
+
+  if (env.SLACK_INQUIRY_WEBHOOK_URL) {
+    try {
+      const res = await fetch(env.SLACK_INQUIRY_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(slackPayload),
+      });
+      if (!res.ok) console.error(`Slack alert failed for inquiry ${inquiry.id}: HTTP ${res.status}`);
+    } catch (err) {
+      console.error(`Slack alert failed for inquiry ${inquiry.id}:`, err);
+    }
+  }
+}
+
+async function handleInquiriesPost(
+  request: Request,
+  env: Env,
+  ctx: ExecutionContext
+): Promise<Response> {
   const limited = applyRateLimit(request, 10);
   if (limited) return limited;
 
@@ -240,6 +336,14 @@ async function handleInquiriesPost(request: Request, env: Env): Promise<Response
       503
     );
   }
+
+  ctx.waitUntil(
+    sendInquiryAlerts(
+      env,
+      { id: inquiryId, serviceType, name, email, phone, details, notes },
+      slackPayload
+    )
+  );
 
   return json(
     {
@@ -425,7 +529,7 @@ async function handleAnalyticsGet(env: Env): Promise<Response> {
 }
 
 export default {
-  async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     const baseUrl = env.APP_URL || "https://adamyoho.com";
 
@@ -442,8 +546,10 @@ export default {
       }
 
       if (url.pathname === "/api/inquiries") {
-        if (request.method === "POST") return handleInquiriesPost(request, env);
-        if (request.method === "GET") return handleInquiriesGet(env);
+        if (request.method === "POST") return handleInquiriesPost(request, env, ctx);
+        if (request.method === "GET") {
+          return (await requireAdmin(request, env)) ?? handleInquiriesGet(env);
+        }
         return json({ error: "Method not allowed." }, 405);
       }
 
@@ -475,15 +581,6 @@ export default {
         return json({ articles: result, total: result.length });
       }
 
-      if (url.pathname === "/api/cms/articles" && request.method === "POST") {
-        const newArt: any = await request.json().catch(() => ({}));
-        if (!newArt.title || !newArt.slug) {
-          return json({ error: "Article title and slug are required." }, 422);
-        }
-        articlesList.unshift(newArt);
-        return json({ success: true, article: newArt }, 201);
-      }
-
       if (url.pathname.startsWith("/api/cms/articles/") && request.method === "GET") {
         const slug = url.pathname.replace("/api/cms/articles/", "");
         const article = articlesList.find((a) => a.slug === slug);
@@ -506,14 +603,6 @@ export default {
             result = result.filter((t) => t.featured);
           }
           return json({ testimonials: result, total: result.length });
-        }
-        if (request.method === "POST") {
-          const newTest: any = await request.json().catch(() => ({}));
-          if (!newTest.quote || !newTest.author) {
-            return json({ error: "Quote and author are required." }, 422);
-          }
-          testimonialsList.unshift(newTest);
-          return json({ success: true, testimonial: newTest }, 201);
         }
         return json({ error: "Method not allowed." }, 405);
       }
@@ -555,7 +644,7 @@ export default {
       }
 
       if (url.pathname === "/api/analytics" && request.method === "GET") {
-        return handleAnalyticsGet(env);
+        return (await requireAdmin(request, env)) ?? handleAnalyticsGet(env);
       }
 
       if (url.pathname.startsWith("/api/")) {

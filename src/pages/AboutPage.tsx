@@ -33,7 +33,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenCalendly
             onClick={onOpenCalendly}
             className="btn-pill-transparent text-[12px] px-8 py-2.5"
           >
-            SCHEDULE ADVISORY CALL
+            REQUEST ADVISORY CALL
           </button>
           <button
             id="about-inquire-btn"

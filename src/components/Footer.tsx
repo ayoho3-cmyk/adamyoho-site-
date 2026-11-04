@@ -7,22 +7,16 @@ interface FooterProps {
   currentRoute?: RoutePath;
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
   onOpenCalendly?: () => void;
-  onOpenCMSInspector?: () => void;
-  onOpenCMSStudio?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   currentRoute,
   onNavigate,
-  onOpenCalendly = () => {},
-  onOpenCMSInspector,
-  onOpenCMSStudio
+  onOpenCalendly = () => {}
 }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedbackMessage, setFeedbackMessage] = useState('');
-
-  const handleOpenStudio = onOpenCMSStudio || onOpenCMSInspector || (() => {});
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,11 +44,8 @@ export const Footer: React.FC<FooterProps> = ({
         setFeedbackMessage(data.error || 'Unable to subscribe. Please try again.');
       }
     } catch (err) {
-      // Fallback for purely client-side environment
-      setStatus('success');
-      setFeedbackMessage('Thank you. You have been added to Chef Adam Yoho’s seasonal kitchen dispatches.');
-      trackNewsletterSubscribe(email, 'footer_newsletter');
-      setEmail('');
+      setStatus('error');
+      setFeedbackMessage('Unable to subscribe. Please check your connection and try again.');
     }
   };
 
@@ -84,16 +75,8 @@ export const Footer: React.FC<FooterProps> = ({
                 onClick={onOpenCalendly}
                 className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] hover:text-[#c1651a] transition-colors flex items-center space-x-1"
               >
-                <span>SCHEDULE INTRO CALL</span>
+                <span>REQUEST INTRO CALL</span>
                 <ArrowRight className="w-3 h-3" />
-              </button>
-              <span className="text-[#2a2825]">·</span>
-              <button
-                id="footer-cms-inspect-btn"
-                onClick={handleOpenStudio}
-                className="font-mono-kitchen text-[11px] tracking-[2px] text-[#9c9488] hover:text-[#f5f0e8] transition-colors"
-              >
-                CMS DATA HUB
               </button>
             </div>
             <div>

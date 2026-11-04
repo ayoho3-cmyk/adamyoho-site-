@@ -7,22 +7,16 @@ interface NavigationProps {
   onNavigate: (route: RoutePath, params?: Record<string, any>) => void;
   onOpenInquiry?: (branch?: string) => void;
   onOpenCalendly?: () => void;
-  onOpenCMSInspector?: () => void;
-  onOpenCMSStudio?: () => void;
 }
 
 export const Navigation: React.FC<NavigationProps> = ({
   currentRoute,
   onNavigate,
   onOpenInquiry = () => {},
-  onOpenCalendly = () => {},
-  onOpenCMSInspector,
-  onOpenCMSStudio
+  onOpenCalendly = () => {}
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleOpenStudio = onOpenCMSStudio || onOpenCMSInspector || (() => {});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,14 +115,6 @@ export const Navigation: React.FC<NavigationProps> = ({
           {/* Right: Inquire CTA & Studio Hub */}
           <div className="flex items-center space-x-3">
             <button
-              id="nav-studio-cms-btn"
-              onClick={handleOpenStudio}
-              title="Inspect Headless CMS & Attribution Analytics"
-              className="hidden sm:inline-flex font-mono-kitchen text-[10px] tracking-[1.5px] text-[#9c9488] hover:text-[#f5f0e8] border border-[#2a2825] px-2.5 py-1.5 transition-colors"
-            >
-              CMS & DATA
-            </button>
-            <button
               id="nav-primary-inquire-btn"
               onClick={() => {
                 setIsMenuOpen(false);
@@ -155,7 +141,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 CURRENT ATELIER STATUS
               </span>
               <p className="font-text text-[15px] text-[#d4cfc4]">
-                Accepting Q3/Q4 2026 restaurant consulting engagements, bespoke private dining experiences, and selective line mentorship.
+                Accepting restaurant consulting engagements, bespoke private dining experiences, and selective line mentorship.
               </p>
             </div>
             <div className="md:col-span-4">
@@ -176,7 +162,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-4 py-2 hover:border-[#f5f0e8] transition-colors flex items-center space-x-2"
               >
                 <Clock className="w-3.5 h-3.5 text-[#c1651a]" />
-                <span>BOOK INTRO CALL (20M)</span>
+                <span>REQUEST INTRO CALL (20M)</span>
               </button>
             </div>
           </div>

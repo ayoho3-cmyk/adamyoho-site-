@@ -16,6 +16,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ faqs = [], onNavigate }) => {
   const [quickQuestion, setQuickQuestion] = useState('');
   const [quickEmail, setQuickEmail] = useState('');
   const [quickSubmitted, setQuickSubmitted] = useState(false);
+  const [quickError, setQuickError] = useState('');
 
   const categories = ['All', 'Consulting', 'Events', 'Mentorship', 'Sourcing & Dietary', 'General'];
 
@@ -38,9 +39,10 @@ export const FAQPage: React.FC<FAQPageProps> = ({ faqs = [], onNavigate }) => {
   const handleQuickSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!quickQuestion || !quickEmail) return;
+    setQuickError('');
 
     try {
-      await fetch('/api/inquiries', {
+      const res = await fetch('/api/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -51,12 +53,12 @@ export const FAQPage: React.FC<FAQPageProps> = ({ faqs = [], onNavigate }) => {
           details: { source: 'faq_quick_submit' }
         })
       });
-    } catch (e) {
-      // Fallback
+      if (!res.ok) throw new Error('Submission failed');
+      setQuickSubmitted(true);
+      setQuickQuestion('');
+    } catch (err) {
+      setQuickError('Your question did not go through. Please try again or email chef@adamyoho.com.');
     }
-
-    setQuickSubmitted(true);
-    setQuickQuestion('');
   };
 
   return (
@@ -169,7 +171,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ faqs = [], onNavigate }) => {
           {quickSubmitted ? (
             <div className="p-4 bg-[#161514] border border-[#5fa657]/40 flex items-center space-x-3 text-[#5fa657] font-mono-kitchen text-[12px]">
               <CheckCircle2 className="w-4 h-4" />
-              <span>Thank you. Your question has been forwarded to the atelier team.</span>
+              <span>Thank you. Your question has been sent to Chef Adam Yoho.</span>
             </div>
           ) : (
             <form onSubmit={handleQuickSubmit} className="space-y-4 pt-2">
@@ -193,6 +195,9 @@ export const FAQPage: React.FC<FAQPageProps> = ({ faqs = [], onNavigate }) => {
                   className="input-underline text-xs"
                 />
               </div>
+              {quickError && (
+                <p className="font-mono-kitchen text-[11px] text-[#d4a017]">{quickError}</p>
+              )}
               <button
                 type="submit"
                 className="btn-pill-transparent text-[11px] px-6 py-2"

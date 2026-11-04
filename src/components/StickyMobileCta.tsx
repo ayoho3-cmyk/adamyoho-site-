@@ -34,8 +34,8 @@ export const StickyMobileCta: React.FC<StickyMobileCtaProps> = ({
             id="mobile-sticky-intro-btn"
             onClick={onOpenCalendly}
             className="w-10 h-10 rounded-full border border-[#423e38] text-[#f5f0e8] flex items-center justify-center hover:border-[#f5f0e8] transition-colors"
-            title="Book Intro Call"
-            aria-label="Book 20-minute intro call"
+            title="Request Intro Call"
+            aria-label="Request a 20-minute intro call"
           >
             <Calendar className="w-4 h-4 text-[#c1651a]" />
           </button>

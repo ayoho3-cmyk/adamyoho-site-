@@ -76,7 +76,7 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
                 onClick={onOpenCalendly}
                 className="font-mono-kitchen text-[12px] tracking-[2px] text-[#f5f0e8] border border-[#423e38] px-6 py-3 hover:border-[#f5f0e8] transition-colors"
               >
-                SCHEDULE 20-MIN INTERVIEW
+                REQUEST 20-MIN INTERVIEW
               </button>
             </div>
           </div>
@@ -172,7 +172,7 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
               className="font-mono-kitchen text-[11px] tracking-[2px] text-[#f5f0e8] hover:text-[#c1651a] border border-[#423e38] px-6 py-3 transition-colors flex items-center space-x-2"
             >
               <Calendar className="w-3.5 h-3.5 text-[#c1651a]" />
-              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'BOOK 20-MIN INTERVIEW DIRECTLY'}</span>
+              <span>{showInlineScheduler ? 'HIDE SCHEDULER' : 'REQUEST 20-MIN INTERVIEW'}</span>
             </button>
           </div>
         </div>
@@ -182,9 +182,9 @@ export const MentorshipPage: React.FC<MentorshipPageProps> = ({
           <div className="animate-fadeIn">
             <ScheduleEmbed
               serviceBranch="mentorship"
-              title="Book Mentorship Intake Interview"
-              subtitle="Lock a 20-minute 1-on-1 video scoping conversation directly on Chef Adam Yoho's calendar."
-              defaultTopic="Chef Mentorship & Brigade Line Coaching"
+              title="Request a Mentorship Interview"
+              subtitle="Tell Chef Adam Yoho about your experience and when you are free. He will email you to confirm a time for a 20-minute call."
+              topicPlaceholder="e.g. Preparing to step up from sous chef"
             />
           </div>
         )}
